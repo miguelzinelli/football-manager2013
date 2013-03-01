@@ -23,7 +23,7 @@ public class Clube {
     }
 
     /**
-     * @return the nome
+     * @return o nome
      */
     public String getNome() {
         return nome;
@@ -37,7 +37,7 @@ public class Clube {
     }
 
     /**
-     * @return the financas
+     * @return as financas(valor)
      */
     public double getFinancas() {
         return financas;
