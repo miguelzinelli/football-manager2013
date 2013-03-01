@@ -21,4 +21,25 @@ public class Clube {
         this.financas = financas;
         this.descricao = descricao;
     }
+
+    /**
+     * @return the nome
+     */
+    public String getNome() {
+        return nome;
+    }
+
+    /**
+     * @return the descricao
+     */
+    public String getDescricao() {
+        return descricao;
+    }
+
+    /**
+     * @return the financas
+     */
+    public double getFinancas() {
+        return financas;
+    }
 }
