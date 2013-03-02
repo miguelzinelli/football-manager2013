@@ -4,6 +4,9 @@
  */
 package br.edu.unipampa.clube;
 
+import br.edu.unipampa.jogador.Jogador;
+import java.util.ArrayList;
+
 /**
  *
  * @author Miguel
@@ -11,15 +14,19 @@ package br.edu.unipampa.clube;
 public class Clube {
     
     private String nome;
-    private String descricao;
     private double financas;
-   // private String calendario;
+    
+    
+    private ArrayList<Jogador> Defesa;
+    private ArrayList<Jogador> Ataque;
+    private int somaValoresAtaque;
+    private int somaValoresDefesa;
     
     
     public Clube(String nome, double financas, String descricao){
         this.nome = nome;
         this.financas = financas;
-        this.descricao = descricao;
+        
     }
 
     /**
@@ -29,17 +36,39 @@ public class Clube {
         return nome;
     }
 
-    /**
-     * @return the descricao
-     */
-    public String getDescricao() {
-        return descricao;
-    }
+   
 
     /**
      * @return as financas(valor)
      */
     public double getFinancas() {
         return financas;
+    }
+    /**
+     * @return the somaValoresAtaque
+     */
+    public int getSomaValoresAtaque() {
+        return somaValoresAtaque;
+    }
+
+    /**
+     * @param somaValoresAtaque the somaValoresAtaque to set
+     */
+    public void setSomaValoresAtaque(int somaValoresAtaque) {
+        this.somaValoresAtaque = somaValoresAtaque;
+    }
+
+    /**
+     * @return the somaValoresDefesa
+     */
+    public int getSomaValoresDefesa() {
+        return somaValoresDefesa;
+    }
+
+    /**
+     * @param somaValoresDefesa the somaValoresDefesa to set
+     */
+    public void setSomaValoresDefesa(int somaValoresDefesa) {
+        this.somaValoresDefesa = somaValoresDefesa;
     }
 }
