@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package br.edu.unipampa.clube;
 
 import br.edu.unipampa.jogador.Jogador;
@@ -12,21 +8,23 @@ import java.util.ArrayList;
  * @author Miguel
  */
 public class Clube {
-    
+
     private String nome;
     private double financas;
-    
-    
-    private ArrayList<Jogador> Defesa;
-    private ArrayList<Jogador> Ataque;
-    private int somaValoresAtaque;
-    private int somaValoresDefesa;
-    
-    
-    public Clube(String nome, double financas, String descricao){
+    private String tecnico;
+    private final int NUMERO_MAX_JOGADORES;
+    private int numeroJogadores;
+    private ArrayList<Jogador> defesa;
+    private ArrayList<Jogador> ataque;
+
+    public Clube(String nome, double financas, String tecnico,
+            ArrayList<Jogador> defesa, ArrayList<Jogador> ataque) {
         this.nome = nome;
         this.financas = financas;
-        
+        this.tecnico = tecnico;
+        this.NUMERO_MAX_JOGADORES = 20;
+        this.defesa = defesa;
+        this.ataque = ataque;
     }
 
     /**
@@ -36,39 +34,38 @@ public class Clube {
         return nome;
     }
 
-   
-
     /**
      * @return as financas(valor)
      */
     public double getFinancas() {
         return financas;
     }
+
     /**
-     * @return the somaValoresAtaque
+     * @return the defesa
      */
-    public int getSomaValoresAtaque() {
-        return somaValoresAtaque;
+    public ArrayList<Jogador> getDefesa() {
+        return defesa;
     }
 
     /**
-     * @param somaValoresAtaque the somaValoresAtaque to set
+     * @return the ataque
      */
-    public void setSomaValoresAtaque(int somaValoresAtaque) {
-        this.somaValoresAtaque = somaValoresAtaque;
+    public ArrayList<Jogador> getAtaque() {
+        return ataque;
     }
 
     /**
-     * @return the somaValoresDefesa
+     * @return the tecnico
      */
-    public int getSomaValoresDefesa() {
-        return somaValoresDefesa;
+    public String getTecnico() {
+        return tecnico;
     }
 
     /**
-     * @param somaValoresDefesa the somaValoresDefesa to set
+     * @param tecnico the tecnico to set
      */
-    public void setSomaValoresDefesa(int somaValoresDefesa) {
-        this.somaValoresDefesa = somaValoresDefesa;
+    public void setTecnico(String tecnico) {
+        this.tecnico = tecnico;
     }
 }

@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package br.edu.unipampa.jogador;
 
 /**
@@ -10,6 +6,10 @@ package br.edu.unipampa.jogador;
  */
 public enum PosicaoJogador {
     
-    Ataque,
-    Defesa
+    GOLEIRO,
+    ZAGUEIRO,
+    LATERAL,
+    VOLANTE,
+    MEIO_CAMPO,
+    ATACANTE
 }
