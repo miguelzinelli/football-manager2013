@@ -1,10 +1,13 @@
 package br.edu.unipampa.jogador;
 
+import br.edu.unipampa.clube.Clube;
+import java.io.Serializable;
+
 /**
  *
  * @author Miguel
  */
-public class Jogador {
+public class Jogador implements Serializable {
 
     private String nome;
     private int forca;
@@ -13,9 +16,11 @@ public class Jogador {
     private String nacionalidade;
     private PosicaoJogador posicao;
     private CaracteristicaJogador caracteristica;
+    private Clube clubeAtual;
 
     public Jogador(String nome, int forca, double valor, String nacionalidade,
-            int idade, PosicaoJogador posicao, CaracteristicaJogador caracteristica) {
+            int idade, PosicaoJogador posicao, CaracteristicaJogador caracteristica,
+            Clube clubeAtual) {
         this.nome = nome;
         this.forca = forca;
         this.valor = valor;
@@ -23,6 +28,7 @@ public class Jogador {
         this.idade = idade;
         this.posicao = posicao;
         this.caracteristica = caracteristica;
+        this.clubeAtual = clubeAtual;
     }
 
     /**
@@ -79,5 +85,19 @@ public class Jogador {
      */
     public CaracteristicaJogador getCaracteristica() {
         return caracteristica;
+    }
+
+    /**
+     * @return the clubeAtual
+     */
+    public Clube getClubeAtual() {
+        return clubeAtual;
+    }
+
+    /**
+     * @param clubeAtual the clubeAtual to set
+     */
+    public void setClubeAtual(Clube clubeAtual) {
+        this.clubeAtual = clubeAtual;
     }
 }

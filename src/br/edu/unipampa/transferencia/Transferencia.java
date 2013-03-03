@@ -10,4 +10,12 @@ package br.edu.unipampa.transferencia;
  */
 public class Transferencia {
     
+    public void comprarJogador(){
+        
+    }
+    
+    public void venderJogador(){
+        
+    }
+    
 }
