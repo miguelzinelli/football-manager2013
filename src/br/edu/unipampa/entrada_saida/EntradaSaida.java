@@ -82,4 +82,11 @@ public class EntradaSaida {
     public LeConfig getLeConfig() {
         return this.leConfig;
     }
+    
+    
+    public void Imprimir(Clube gremio){
+        for (int i = 0; i < gremio.getAtaque().size(); i++) {
+            System.out.println(gremio.getAtaque().get(i));
+        }
+    }
 }
