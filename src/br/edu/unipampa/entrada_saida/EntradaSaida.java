@@ -1,7 +1,9 @@
 package br.edu.unipampa.entrada_saida;
 
+import br.edu.unipampa.campeonato.Campeonato;
 import br.edu.unipampa.clube.Clube;
 import br.edu.unipampa.config.LeConfig;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 /**
@@ -10,22 +12,26 @@ import java.util.Scanner;
  */
 public class EntradaSaida {
 
-    private LeConfig leConfig;
     private Scanner teclado;
     private int escolhaInt;
     private String escolhaString;
-    private String nomeTreinador;
-    private Clube timeComandado;
+    private LeConfig leConfig;
+    private Campeonato campeonato;
 
     public EntradaSaida() {
-        this.leConfig = new LeConfig();
         this.teclado = new Scanner(System.in);
+        this.leConfig = new LeConfig();
+        this.campeonato = new Campeonato();
     }
 
     public void iniciarJogo() {
         System.out.println("Bem Vindo ao FootballPampa!\n");
-        this.nomeTreinador = informarNomeTreinador();
-        this.timeComandado = escolherTime();
+        String nomeTreinador = informarNomeTreinador();
+        Clube timeComandado = escolherTime();
+        timeComandado.setTecnico(nomeTreinador);
+        this.leConfig.getClubes().remove(escolhaInt-1);
+        
+        iniciarCampeonato(timeComandado, this.leConfig.getClubes());
     }
 
     public String informarNomeTreinador() {
@@ -63,6 +69,11 @@ public class EntradaSaida {
                 return escolherTime();
             }
         }
+    }
+    
+    private void iniciarCampeonato(Clube clubeComandado, ArrayList<Clube> clubes){
+        this.campeonato.setClubeComandado(clubeComandado);
+        this.campeonato.setClubes(clubes);        
     }
     
     /**
