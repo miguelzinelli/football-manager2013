@@ -29,35 +29,35 @@ public class Clube implements Serializable {
      * @return o nome
      */
     public String getNome() {
-        return nome;
+        return this.nome;
     }
 
     /**
      * @return as financas(valor)
      */
     public double getFinancas() {
-        return financas;
+        return this.financas;
     }
 
     /**
      * @return the defesa
      */
     public ArrayList<Jogador> getDefesa() {
-        return defesa;
+        return this.defesa;
     }
 
     /**
      * @return the ataque
      */
     public ArrayList<Jogador> getAtaque() {
-        return ataque;
+        return this.ataque;
     }
 
     /**
      * @return the tecnico
      */
     public String getTecnico() {
-        return tecnico;
+        return this.tecnico;
     }
 
     /**

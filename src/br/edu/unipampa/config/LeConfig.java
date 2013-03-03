@@ -16,24 +16,23 @@ public class LeConfig {
     private ArrayList<Jogador> jogadoresAVendaDefesa;
 
     public LeConfig() {
+        this.clubes = new ArrayList<>();
+        this.jogadoresAVendaAtaque = new ArrayList<>();
+        this.jogadoresAVendaDefesa = new ArrayList<>();
     }
 
     public void le() throws Exception {
-        clubes = new ArrayList<>();
-        jogadoresAVendaAtaque = new ArrayList<>();
-        jogadoresAVendaDefesa = new ArrayList<>();
-
         FileInputStream fis = new FileInputStream("build\\config.ser");
         ObjectInputStream ois = new ObjectInputStream(fis);
 
         for (int i = 0; i < 8; i++) {
             getClubes().add((Clube) ois.readObject());
         }
-        
+
         for (int i = 8; i < 18; i++) {
             getJogadoresAVendaAtaque().add((Jogador) ois.readObject());
         }
-        
+
         for (int i = 18; i < 28; i++) {
             getJogadoresAVendaDefesa().add((Jogador) ois.readObject());
         }
@@ -46,20 +45,20 @@ public class LeConfig {
      * @return the clubes
      */
     public ArrayList<Clube> getClubes() {
-        return clubes;
+        return this.clubes;
     }
 
     /**
      * @return the jogadoresAVendaAtaque
      */
     public ArrayList<Jogador> getJogadoresAVendaAtaque() {
-        return jogadoresAVendaAtaque;
+        return this.jogadoresAVendaAtaque;
     }
 
     /**
      * @return the jogadoresAVendaDefesa
      */
     public ArrayList<Jogador> getJogadoresAVendaDefesa() {
-        return jogadoresAVendaDefesa;
+        return this.jogadoresAVendaDefesa;
     }
 }

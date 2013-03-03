@@ -35,35 +35,35 @@ public class Jogador implements Serializable {
      * @return o nome
      */
     public String getNome() {
-        return nome;
+        return this.nome;
     }
 
     /**
      * @return a forca
      */
     public int getForca() {
-        return forca;
+        return this.forca;
     }
 
     /**
      * @return o valor
      */
     public double getValor() {
-        return valor;
+        return this.valor;
     }
 
     /**
      * @return a nacionalidade
      */
     public String getNacionalidade() {
-        return nacionalidade;
+        return this.nacionalidade;
     }
 
     /**
      * @return the idade
      */
     public int getIdade() {
-        return idade;
+        return this.idade;
     }
 
     /**
@@ -77,21 +77,21 @@ public class Jogador implements Serializable {
      * @return the posicao
      */
     public PosicaoJogador getPosicao() {
-        return posicao;
+        return this.posicao;
     }
 
     /**
      * @return the caracteristica
      */
     public CaracteristicaJogador getCaracteristica() {
-        return caracteristica;
+        return this.caracteristica;
     }
 
     /**
      * @return the clubeAtual
      */
     public Clube getClubeAtual() {
-        return clubeAtual;
+        return this.clubeAtual;
     }
 
     /**

@@ -20,7 +20,7 @@ public class Campeonato {
      * @return the clubes
      */
     public ArrayList<Clube> getClubes() {
-        return clubes;
+        return this.clubes;
     }
 
     /**
@@ -34,7 +34,7 @@ public class Campeonato {
      * @return the clubeComandado
      */
     public Clube getClubeComandado() {
-        return clubeComandado;
+        return this.clubeComandado;
     }
 
     /**

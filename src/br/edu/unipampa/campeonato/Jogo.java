@@ -10,5 +10,9 @@ public class Jogo {
         
     }
     
+    public void escalarTime(){
+        
+    }
+    
     
 }
