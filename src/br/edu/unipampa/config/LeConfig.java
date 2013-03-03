@@ -15,7 +15,7 @@ public class LeConfig {
     private ArrayList<Jogador> jogadoresAVendaAtaque;
     private ArrayList<Jogador> jogadoresAVendaDefesa;
 
-    public void LeConfig() {
+    public LeConfig() {
     }
 
     public void le() throws Exception {

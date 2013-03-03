@@ -1,7 +1,7 @@
 package br.edu.unipampa.view;
 
-import br.edu.unipampa.config.LeConfig;
 import br.edu.unipampa.config.SalvaConfig;
+import br.edu.unipampa.entrada_saida.EntradaSaida;
 
 /**
  *
@@ -10,29 +10,15 @@ import br.edu.unipampa.config.SalvaConfig;
 public class View {
 
     public static void main(String[] args) throws Exception {
-        LeConfig leConfig = new LeConfig();
+        EntradaSaida entradaSaida = new EntradaSaida();
         try {
-            leConfig.le();
+            entradaSaida.getLeConfig().le();
         } catch (Exception e) {
             SalvaConfig salvaConfig = new SalvaConfig();
             salvaConfig.criarTimesJogadores();
             salvaConfig.salvar();
-            leConfig.le();
+            entradaSaida.getLeConfig().le();
         }
-        
-        System.out.println("Clubes");
-        for (int i = 0; i < leConfig.getClubes().size(); i++) {
-            System.out.println("" + leConfig.getClubes().get(i).getNome());
-        }
-        
-        System.out.println("Jogadores venda ataque");
-        for (int i = 0; i < leConfig.getJogadoresAVendaAtaque().size(); i++) {
-            System.out.println("" + leConfig.getJogadoresAVendaAtaque().get(i).getNome());
-        }
-        
-        System.out.println("Jogadores venda defesa");
-        for (int i = 0; i < leConfig.getJogadoresAVendaDefesa().size(); i++) {
-            System.out.println("" + leConfig.getJogadoresAVendaDefesa().get(i).getNome());
-        }
+        entradaSaida.iniciarJogo();
     }
 }

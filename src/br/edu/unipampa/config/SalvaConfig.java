@@ -17,7 +17,7 @@ public class SalvaConfig {
     private ArrayList<Jogador> jogadoresAVendaAtaque;
     private ArrayList<Jogador> jogadoresAVendaDefesa;
 
-    public void SalvaConfig() {
+    public SalvaConfig() {
     }
 
     public void criarTimesJogadores() {
