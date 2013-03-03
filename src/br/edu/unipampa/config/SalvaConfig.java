@@ -136,4 +136,11 @@ public class SalvaConfig {
         this.jogadoresAVendaDefesa.add(new Jogador("Paulão", 34, 2000, "Africano", 34, PosicaoJogador.ZAGUEIRO, CaracteristicaJogador.DEFESA, null));
         this.jogadoresAVendaDefesa.add(new Jogador("Paulão", 34, 2000, "Africano", 34, PosicaoJogador.ZAGUEIRO, CaracteristicaJogador.DEFESA, null));
     }
+    
+    public void Imprimir(Clube gremio){
+        
+        for (int i = 0; i < gremio.getAtaque().size(); i++) {
+            System.out.println(gremio.getAtaque().get(i));
+        }
+    }
 }

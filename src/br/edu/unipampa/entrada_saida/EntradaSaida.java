@@ -88,4 +88,7 @@ public class EntradaSaida {
     public LeConfig getLeConfig() {
         return this.leConfig;
     }
+    
+    
+    
 }
