@@ -9,32 +9,32 @@ import java.util.ArrayList;
  *
  * @author Alex
  */
-public class LeConfig {
+public class LerConfig {
 
     private ArrayList<Clube> clubes;
     private ArrayList<Jogador> jogadoresAVendaAtaque;
     private ArrayList<Jogador> jogadoresAVendaDefesa;
 
-    public LeConfig() {
+    public LerConfig() {
         this.clubes = new ArrayList<>();
         this.jogadoresAVendaAtaque = new ArrayList<>();
         this.jogadoresAVendaDefesa = new ArrayList<>();
     }
 
-    public void le() throws Exception {
+    public void ler() throws Exception {
         FileInputStream fis = new FileInputStream("build\\config.ser");
         ObjectInputStream ois = new ObjectInputStream(fis);
 
         for (int i = 0; i < 8; i++) {
-            getClubes().add((Clube) ois.readObject());
+            this.clubes.add((Clube) ois.readObject());
         }
 
         for (int i = 8; i < 13; i++) {
-            getJogadoresAVendaAtaque().add((Jogador) ois.readObject());
+            this.jogadoresAVendaAtaque.add((Jogador) ois.readObject());
         }
 
         for (int i = 13; i < 18; i++) {
-            getJogadoresAVendaDefesa().add((Jogador) ois.readObject());
+            this.jogadoresAVendaDefesa.add((Jogador) ois.readObject());
         }
 
         ois.close();

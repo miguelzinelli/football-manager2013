@@ -2,8 +2,8 @@ package br.edu.unipampa.entrada_saida;
 
 import br.edu.unipampa.campeonato.Partida;
 import br.edu.unipampa.clube.Clube;
-import br.edu.unipampa.config.LeConfig;
-import br.edu.unipampa.config.SalvaConfig;
+import br.edu.unipampa.config.LerConfig;
+import br.edu.unipampa.config.SalvarConfig;
 import br.edu.unipampa.jogador.Jogador;
 import br.edu.unipampa.transferencia.Transferencia;
 import java.util.ArrayList;
@@ -18,14 +18,14 @@ public class EntradaSaida {
     private Scanner teclado;
     private int escolhaInt;
     private String escolhaString;
-    private LeConfig leConfig;
+    private LerConfig lerConfig;
     private Partida jogo;
     private Transferencia transferencia;
-    private SalvaConfig sc;
+    private SalvarConfig sc;
 
     public EntradaSaida() {
         this.teclado = new Scanner(System.in);
-        this.leConfig = new LeConfig();
+        this.lerConfig = new LerConfig();
         this.jogo = new Partida();
         this.transferencia = new Transferencia();
     }
@@ -35,12 +35,12 @@ public class EntradaSaida {
         String nomeTreinador = informarNomeTreinador();
         Clube timeComandado = escolherTime();
         timeComandado.setTecnico(nomeTreinador);
-        this.leConfig.getClubes().remove(escolhaInt - 1);
+        this.lerConfig.getClubes().remove(escolhaInt - 1);
 
-        this.transferencia.setJogadoresAVendaAtaque(this.leConfig.getJogadoresAVendaAtaque());
-        this.transferencia.setJogadoresAVendaDefesa(this.leConfig.getJogadoresAVendaDefesa());
+        this.transferencia.setJogadoresAVendaAtaque(this.lerConfig.getJogadoresAVendaAtaque());
+        this.transferencia.setJogadoresAVendaDefesa(this.lerConfig.getJogadoresAVendaDefesa());
 
-        iniciarCampeonato(timeComandado, this.leConfig.getClubes());
+        iniciarCampeonato(timeComandado, this.lerConfig.getClubes());
     }
 
     public String informarNomeTreinador() {
@@ -57,8 +57,8 @@ public class EntradaSaida {
 
     private Clube escolherTime() {
         System.out.println("\nEscolha o Time que deseja comandar:");
-        for (int i = 0; i < this.leConfig.getClubes().size(); i++) {
-            System.out.println(" --> Digite '" + (i + 1) + "' para treinar o " + this.leConfig.getClubes().get(i).getNome());
+        for (int i = 0; i < this.lerConfig.getClubes().size(); i++) {
+            System.out.println(" --> Digite '" + (i + 1) + "' para treinar o " + this.lerConfig.getClubes().get(i).getNome());
         }
         boolean caracterInvalido = false;
         try {
@@ -71,8 +71,8 @@ public class EntradaSaida {
             System.out.println("\nCaracter Inválido!!! Digite Novamente: ");
             return escolherTime();
         } else {
-            if (this.escolhaInt >= 1 && this.escolhaInt <= this.leConfig.getClubes().size()) {
-                return this.leConfig.getClubes().get(this.escolhaInt - 1);
+            if (this.escolhaInt >= 1 && this.escolhaInt <= this.lerConfig.getClubes().size()) {
+                return this.lerConfig.getClubes().get(this.escolhaInt - 1);
             } else {
                 System.out.println("\nTime não encontrado!!! Digite Novamente: ");
                 return escolherTime();
@@ -122,7 +122,8 @@ public class EntradaSaida {
             if (escolha.equals("1")) {
                 int numeroPosJogador = 0;
 
-                if (this.transferencia.getJogadoresAVendaDefesa().isEmpty() && (this.transferencia.getJogadoresAVendaAtaque().isEmpty())) {
+                if (this.transferencia.getJogadoresAVendaDefesa().isEmpty()
+                        && (this.transferencia.getJogadoresAVendaAtaque().isEmpty())) {
                     System.out.println("\nNenhum jogador disponível a compra.");
                 } else {
                     System.out.println("\nJogadores disponíveis para compra:");
@@ -171,8 +172,8 @@ public class EntradaSaida {
     /**
      * @return the leConfig
      */
-    public LeConfig getLeConfig() {
-        return this.leConfig;
+    public LerConfig getLeConfig() {
+        return this.lerConfig;
     }
 
     public void escalarTime() {
@@ -191,7 +192,6 @@ public class EntradaSaida {
 
             }
         }
-        
+
     }
-    
 }

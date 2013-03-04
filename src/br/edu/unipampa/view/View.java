@@ -1,9 +1,7 @@
 package br.edu.unipampa.view;
 
-import br.edu.unipampa.config.SalvaConfig;
+import br.edu.unipampa.config.SalvarConfig;
 import br.edu.unipampa.entrada_saida.EntradaSaida;
-import br.edu.unipampa.jogador.Jogador;
-import java.util.ArrayList;
 
 /**
  *
@@ -11,17 +9,15 @@ import java.util.ArrayList;
  */
 public class View {
 
-    private ArrayList<Jogador> escolhidos;
-    
     public static void main(String[] args) throws Exception {
         EntradaSaida entradaSaida = new EntradaSaida();
         try {
-            entradaSaida.getLeConfig().le();
+            entradaSaida.getLeConfig().ler();
         } catch (Exception e) {
-            SalvaConfig salvaConfig = new SalvaConfig();           
-            salvaConfig.criarTimesJogadores();
-            salvaConfig.salvar();
-            entradaSaida.getLeConfig().le();
+            SalvarConfig salvarConfig = new SalvarConfig();           
+            salvarConfig.criarTimesJogadores();
+            salvarConfig.salvar();
+            entradaSaida.getLeConfig().ler();
         }
         entradaSaida.iniciarJogo();
     }
