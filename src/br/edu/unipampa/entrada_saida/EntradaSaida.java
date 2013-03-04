@@ -86,35 +86,75 @@ public class EntradaSaida {
                 + "O campeonato acaba de começar, e você terá " + this.jogo.getClubes().size()
                 + " rodadas para conquistar o título. Boa sorte nessa caminhada!");
 
-        mostrarMenuPrincipal(true);
+        mostrarMenuPrincipal();
     }
 
     private void proximoConfronto() {
         System.out.println("\nPróximo Confronto: " + this.jogo.proximoConfronto());
     }
 
-    private boolean mostrarMenuPrincipal(boolean mostrarProximoConfronto) {
-        if (mostrarProximoConfronto) {
-            proximoConfronto();
-        }
+    private boolean mostrarMenuPrincipal() {
         System.out.println(
-                "------------------------------------------------------------------------------------------------------------------------------------------------------------"
-                + "\nO que deseja fazer?\n     Tecle '1' para Escalar Time    -    Tecle '2' para Classificação    -    Tecle '3' para Iniciar Jogo    -    Tecle '4' para Comprar/Vender Jogador"
-                + "\n------------------------------------------------------------------------------------------------------------------------------------------------------------");
+                "-------------------------------------------------------------------------------------------------"
+                + "-----------------------------------------------------------"
+                + "\nO que deseja fazer?\n     Tecle '1' para Escalar Time    -    Tecle '2' para Classificação    "
+                + "-    Tecle '3' para Iniciar Jogo    -    Tecle '4' para Comprar/Vender Jogador"
+                + "\n----------------------------------------------------------------------------------------------"
+                + "--------------------------------------------------------------");
         this.escolhaString = teclado.next();
-        if (this.escolhaString.equals("1") || (this.escolhaString.equals("2")) || (this.escolhaString.equals("3")) || (this.escolhaString.equals("4"))) {
+        if (this.escolhaString.equals("1") || (this.escolhaString.equals("2")) || (this.escolhaString.equals("3"))
+                || (this.escolhaString.equals("4"))) {
             executarAcaoEscolhidaMenuPrincipal(this.escolhaString);
             return true;
         } else {
             System.out.println("Caracter Inválido!!! Digite Novamente: ");
-            return mostrarMenuPrincipal(true);
+            return mostrarMenuPrincipal();
         }
     }
 
     private void executarAcaoEscolhidaMenuPrincipal(String escolha) {
         if (escolha.equals("4")) {
-            proximoConfronto();
-            mostrarMenuPrincipal(false);
+            escolha = mostrarMenuCompraVendeJogador();
+            if (escolha.equals("1")) {
+                int numeroPosJogador = 0;
+
+                if (this.transferencia.getJogadoresAVendaDefesa().isEmpty() && (this.transferencia.getJogadoresAVendaAtaque().isEmpty())) {
+                    System.out.println("\nNenhum jogador disponível a compra.");
+                } else {
+                    System.out.println("\nJogadores disponíveis para compra:");
+                    if (!this.transferencia.getJogadoresAVendaDefesa().isEmpty()) {
+                        System.out.println("\n  --> Jogadores de Defesa:");
+                        for (int x = 0; x < this.transferencia.getJogadoresAVendaDefesa().size(); x++) {
+                            System.out.println("  '" + (numeroPosJogador + 1) + "' " + this.transferencia.getJogadoresAVendaDefesa().get(x).getNome() + " - Força: "
+                                    + this.transferencia.getJogadoresAVendaDefesa().get(x).getForca() + " - Valor: "
+                                    + this.transferencia.getJogadoresAVendaDefesa().get(x).getValor());
+                            numeroPosJogador++;
+                        }
+                    }
+
+                    if (!this.transferencia.getJogadoresAVendaAtaque().isEmpty()) {
+                        System.out.println("\n  --> Jogadores de Ataque:");
+                        for (int y = 0; y < this.transferencia.getJogadoresAVendaAtaque().size(); y++) {
+                            System.out.println("  '" + (numeroPosJogador + 1) + "' " + this.transferencia.getJogadoresAVendaAtaque().get(y).getNome() + " - Força: "
+                                    + this.transferencia.getJogadoresAVendaAtaque().get(y).getForca() + " - Valor: "
+                                    + this.transferencia.getJogadoresAVendaAtaque().get(y).getValor());
+                            numeroPosJogador++;
+                        }
+                    }
+                }
+            } else {
+            }
+        }
+    }
+
+    private String mostrarMenuCompraVendeJogador() {
+        System.out.println("O que você deseja fazer:\n --> '1' - Comprar\n --> '2' - Vender");
+        escolhaString = teclado.next();
+        if (this.escolhaString.equals("1") || (this.escolhaString.equals("2"))) {
+            return escolhaString;
+        } else {
+            System.out.println("Caracter Inválido!!! Digite Novamente: ");
+            return mostrarMenuCompraVendeJogador();
         }
     }
 
