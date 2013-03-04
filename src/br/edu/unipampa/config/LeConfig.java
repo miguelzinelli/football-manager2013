@@ -33,7 +33,7 @@ public class LeConfig {
             getJogadoresAVendaAtaque().add((Jogador) ois.readObject());
         }
 
-        for (int i = 18; i < 18; i++) {
+        for (int i = 13; i < 18; i++) {
             getJogadoresAVendaDefesa().add((Jogador) ois.readObject());
         }
 

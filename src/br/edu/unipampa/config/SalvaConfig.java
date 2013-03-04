@@ -58,16 +58,16 @@ public class SalvaConfig {
         FileOutputStream fos = new FileOutputStream("build\\config.ser");
         ObjectOutputStream oos = new ObjectOutputStream(fos);
 
-        for (int i = 0; i < clubes.size(); i++) {
-            oos.writeObject(clubes.get(i));
+        for (int i = 0; i < this.clubes.size(); i++) {
+            oos.writeObject(this.clubes.get(i));
         }
 
-        for (int i = 0; i < jogadoresAVendaAtaque.size(); i++) {
-            oos.writeObject(jogadoresAVendaAtaque.get(i));
+        for (int i = 0; i < this.jogadoresAVendaAtaque.size(); i++) {
+            oos.writeObject(this.jogadoresAVendaAtaque.get(i));
         }
 
-        for (int i = 0; i < jogadoresAVendaDefesa.size(); i++) {
-            oos.writeObject(jogadoresAVendaDefesa.get(i));
+        for (int i = 0; i < this.jogadoresAVendaDefesa.size(); i++) {
+            oos.writeObject(this.jogadoresAVendaDefesa.get(i));
         }
 
         oos.flush();
@@ -308,20 +308,11 @@ public class SalvaConfig {
         this.jogadoresAVendaAtaque.add(new Jogador("Delofeo", 85, 2.9, "Espanhol", 17, PosicaoJogador.MEIO_CAMPO, CaracteristicaJogador.ATAQUE, null));
         this.jogadoresAVendaAtaque.add(new Jogador("Ewerson", 81, 13.6, "Brasileiro", 31, PosicaoJogador.ATACANTE, CaracteristicaJogador.ATAQUE, null));
 
-
-
         this.jogadoresAVendaDefesa.add(new Jogador("Paulão", 80, 20.0, "Africano", 31, PosicaoJogador.ZAGUEIRO, CaracteristicaJogador.DEFESA, null));
         this.jogadoresAVendaDefesa.add(new Jogador("Arex", 77, 19.0, "Paraguaio", 23, PosicaoJogador.LATERAL, CaracteristicaJogador.DEFESA, null));
         this.jogadoresAVendaDefesa.add(new Jogador("Sebastião", 77, 13.1, "Brasileiro", 22, PosicaoJogador.VOLANTE, CaracteristicaJogador.DEFESA, null));
         this.jogadoresAVendaDefesa.add(new Jogador("Vinicius", 2, 0.1, "Argentino", 36, PosicaoJogador.GOLEIRO, CaracteristicaJogador.DEFESA, null));
         this.jogadoresAVendaDefesa.add(new Jogador("Antoni", 79, 7.9, "Italiano", 18, PosicaoJogador.ZAGUEIRO, CaracteristicaJogador.DEFESA, null));
 
-    }
-
-    public void Imprimir(Clube gremio) {
-
-        for (int i = 0; i < gremio.getAtaque().size(); i++) {
-            System.out.println(gremio.getAtaque().get(i));
-        }
     }
 }
