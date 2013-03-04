@@ -34,11 +34,11 @@ public class SalvaConfig {
         Clube saoLuizIjui = new Clube("São Luiz - Ijuí", 28.0, "Paulo Porto");
         Clube passoFundo = new Clube("Passo Fundo", 50000, "Luxemburgo");
 
-        //cria jogadores gremio
+        //cria jogadores 
         criarGremio(gremio);
-
-        //cria jogadores internacional
         criarInternacional(internacional);
+        criarSaoLuiz(saoLuizIjui);
+        criarCaxias(caxias);
 
         //add no arraylist os clubes
         this.clubes.add(gremio);
