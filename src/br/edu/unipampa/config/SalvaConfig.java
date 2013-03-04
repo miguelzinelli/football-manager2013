@@ -616,4 +616,17 @@ public class SalvaConfig {
         this.jogadoresAVendaDefesa.add(new Jogador("Antoni", 79, 7.9, "Italiano", 18, PosicaoJogador.ZAGUEIRO, CaracteristicaJogador.DEFESA, null));
 
     }
+    
+    public String definirFormacao442(Clube clube, ArrayList<Jogador> jogadorGremioDefesa ){
+        for (int i = 0; i < jogadorGremioDefesa.size(); i++) {
+            System.out.println(jogadorGremioDefesa.get(i));
+            
+            
+        }
+ 
+       
+     clube.setDefesa(jogadorGremioDefesa);   
+        
+     return "";
+    }
 }

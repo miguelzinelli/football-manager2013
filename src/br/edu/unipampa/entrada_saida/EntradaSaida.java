@@ -3,6 +3,7 @@ package br.edu.unipampa.entrada_saida;
 import br.edu.unipampa.campeonato.Jogo;
 import br.edu.unipampa.clube.Clube;
 import br.edu.unipampa.config.LeConfig;
+import br.edu.unipampa.config.SalvaConfig;
 import br.edu.unipampa.transferencia.Transferencia;
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -19,7 +20,8 @@ public class EntradaSaida {
     private LeConfig leConfig;
     private Jogo jogo;
     private Transferencia transferencia;
-
+    private SalvaConfig sc;
+    
     public EntradaSaida() {
         this.teclado = new Scanner(System.in);
         this.leConfig = new LeConfig();
@@ -170,5 +172,31 @@ public class EntradaSaida {
      */
     public LeConfig getLeConfig() {
         return this.leConfig;
+    }
+    
+    public void escalaTime(Clube clube){
+       System.out.println("******** Definir Escalação ********");
+         
+       System.out.println("-> Digite 1 para escolher 4-4-2\n-> Digite 2 para escolher 4-3-3\n -> Digite 3 para escolher 4-5-1\n -> Digite 4 para escolher 3-5-2");
+       this.escolhaInt = teclado.nextInt();
+        if (escolhaInt == 1) {
+          
+        }else{
+            if (escolhaInt == 2) {
+                
+            }else{
+                if (escolhaInt == 3) {
+                    
+                }else{
+                    if (escolhaInt == 4) {
+                        
+                    }
+                }
+            }
+        }
+        
+        
+        
+        
     }
 }
