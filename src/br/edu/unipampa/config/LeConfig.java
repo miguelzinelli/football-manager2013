@@ -29,11 +29,11 @@ public class LeConfig {
             getClubes().add((Clube) ois.readObject());
         }
 
-        for (int i = 8; i < 18; i++) {
+        for (int i = 8; i < 13; i++) {
             getJogadoresAVendaAtaque().add((Jogador) ois.readObject());
         }
 
-        for (int i = 18; i < 28; i++) {
+        for (int i = 18; i < 18; i++) {
             getJogadoresAVendaDefesa().add((Jogador) ois.readObject());
         }
 
