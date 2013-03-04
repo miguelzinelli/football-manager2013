@@ -189,7 +189,7 @@ public class EntradaSaida {
                     mostrarMenuPrincipal();
                 } else {
                     if (this.transferencia.comprarJogador(this.jogo.getClubeComandado(),
-                            this.transferencia.getJogadoresAVendaDefesa().get(numeroJogadoresAVenda - 1))) {
+                            this.transferencia.getJogadoresAVendaDefesa().get(numeroJogadoresAVenda - this.transferencia.getJogadoresAVendaDefesa().size() - 1))) {
                         System.out.println("Jogador integrado ao seu plantel.\n"
                                 + "O valor em caixa do clube está em: "
                                 + this.jogo.getClubeComandado().getFinancas());
