@@ -86,6 +86,7 @@ public class EntradaSaida {
                 + "O campeonato acaba de começar, e você terá " + this.jogo.getClubes().size()
                 + " rodadas para conquistar o título. Boa sorte nessa caminhada!");
 
+        proximoConfronto();
         mostrarMenuPrincipal();
     }
 
@@ -107,7 +108,7 @@ public class EntradaSaida {
             executarAcaoEscolhidaMenuPrincipal(this.escolhaString);
             return true;
         } else {
-            System.out.println("Caracter Inválido!!! Digite Novamente: ");
+            System.out.println("Caracter Inválido!!!\n");
             return mostrarMenuPrincipal();
         }
     }
@@ -125,9 +126,12 @@ public class EntradaSaida {
                     if (!this.transferencia.getJogadoresAVendaDefesa().isEmpty()) {
                         System.out.println("\n  --> Jogadores de Defesa:");
                         for (int x = 0; x < this.transferencia.getJogadoresAVendaDefesa().size(); x++) {
-                            System.out.println("  '" + (numeroPosJogador + 1) + "' " + this.transferencia.getJogadoresAVendaDefesa().get(x).getNome() + " - Força: "
-                                    + this.transferencia.getJogadoresAVendaDefesa().get(x).getForca() + " - Valor: "
-                                    + this.transferencia.getJogadoresAVendaDefesa().get(x).getValor());
+                            System.out.println("  '" + (numeroPosJogador + 1) + "' " + this.transferencia.getJogadoresAVendaDefesa().get(x).getNome() 
+                                    + " - Força: " + this.transferencia.getJogadoresAVendaDefesa().get(x).getForca() 
+                                    + " - Idade: "+ this.transferencia.getJogadoresAVendaDefesa().get(x).getIdade() 
+                                    + " - Nacionalidade: "+ this.transferencia.getJogadoresAVendaDefesa().get(x).getNacionalidade()
+                                    + " - Posição: "+ this.transferencia.getJogadoresAVendaDefesa().get(x).getPosicao()
+                                    + " - Valor: " + this.transferencia.getJogadoresAVendaDefesa().get(x).getValor());
                             numeroPosJogador++;
                         }
                     }
@@ -135,9 +139,12 @@ public class EntradaSaida {
                     if (!this.transferencia.getJogadoresAVendaAtaque().isEmpty()) {
                         System.out.println("\n  --> Jogadores de Ataque:");
                         for (int y = 0; y < this.transferencia.getJogadoresAVendaAtaque().size(); y++) {
-                            System.out.println("  '" + (numeroPosJogador + 1) + "' " + this.transferencia.getJogadoresAVendaAtaque().get(y).getNome() + " - Força: "
-                                    + this.transferencia.getJogadoresAVendaAtaque().get(y).getForca() + " - Valor: "
-                                    + this.transferencia.getJogadoresAVendaAtaque().get(y).getValor());
+                            System.out.println("  '" + (numeroPosJogador + 1) + "' " + this.transferencia.getJogadoresAVendaAtaque().get(y).getNome() 
+                                    + " - Força: " + this.transferencia.getJogadoresAVendaAtaque().get(y).getForca() 
+                                    + " - Idade: "+ this.transferencia.getJogadoresAVendaAtaque().get(y).getIdade() 
+                                    + " - Nacionalidade: "+ this.transferencia.getJogadoresAVendaAtaque().get(y).getNacionalidade()
+                                    + " - Posição: "+ this.transferencia.getJogadoresAVendaAtaque().get(y).getPosicao()
+                                    + " - Valor: " + this.transferencia.getJogadoresAVendaAtaque().get(y).getValor());
                             numeroPosJogador++;
                         }
                     }

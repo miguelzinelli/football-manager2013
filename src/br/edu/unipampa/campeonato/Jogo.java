@@ -6,10 +6,19 @@ package br.edu.unipampa.campeonato;
  */
 public class Jogo extends Campeonato {
 
+    private int numeroSubstituicao;
+
+    public Jogo() {
+        this.numeroSubstituicao = 3;
+    }
+
     public void iniciarJogo() {
     }
 
-    public void escalarTime() {
+    public void terminarJogo() {
+    }
+
+    public void substituicao() {
     }
 
     public String proximoConfronto() {

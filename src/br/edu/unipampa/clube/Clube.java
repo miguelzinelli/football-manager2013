@@ -15,14 +15,13 @@ public class Clube implements Serializable {
     private String tecnico;
     private ArrayList<Jogador> defesa;
     private ArrayList<Jogador> ataque;
+    private ArrayList<Jogador> escalacaoTitular;
+    private ArrayList<Jogador> escalacaoReserva;
 
-    public Clube(String nome, double financas, String tecnico,
-            ArrayList<Jogador> defesa, ArrayList<Jogador> ataque) {
+    public Clube(String nome, double financas, String tecnico) {
         this.nome = nome;
         this.financas = financas;
         this.tecnico = tecnico;
-        this.defesa = defesa;
-        this.ataque = ataque;
     }
 
     /**
@@ -79,5 +78,33 @@ public class Clube implements Serializable {
      */
     public void setAtaque(ArrayList<Jogador> ataque) {
         this.ataque = ataque;
+    }
+
+    /**
+     * @return the escalacaoTitular
+     */
+    public ArrayList<Jogador> getEscalacaoTitular() {
+        return escalacaoTitular;
+    }
+
+    /**
+     * @param escalacaoTitular the escalacaoTitular to set
+     */
+    public void setEscalacaoTitular(ArrayList<Jogador> escalacaoTitular) {
+        this.escalacaoTitular = escalacaoTitular;
+    }
+
+    /**
+     * @return the escalacaoReserva
+     */
+    public ArrayList<Jogador> getEscalacaoReserva() {
+        return escalacaoReserva;
+    }
+
+    /**
+     * @param escalacaoReserva the escalacaoReserva to set
+     */
+    public void setEscalacaoReserva(ArrayList<Jogador> escalacaoReserva) {
+        this.escalacaoReserva = escalacaoReserva;
     }
 }
