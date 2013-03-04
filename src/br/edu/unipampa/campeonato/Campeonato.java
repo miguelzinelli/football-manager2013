@@ -11,6 +11,7 @@ public class Campeonato {
     
     private ArrayList<Clube> clubes;
     private Clube clubeComandado;
+    protected int numeroPartidas;
     
     public Campeonato(){
         
@@ -28,6 +29,7 @@ public class Campeonato {
      */
     public void setClubes(ArrayList<Clube> clubes) {
         this.clubes = clubes;
+        this.numeroPartidas = this.clubes.size();
     }
 
     /**

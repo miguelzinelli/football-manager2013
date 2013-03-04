@@ -1,6 +1,6 @@
 package br.edu.unipampa.entrada_saida;
 
-import br.edu.unipampa.campeonato.Campeonato;
+import br.edu.unipampa.campeonato.Jogo;
 import br.edu.unipampa.clube.Clube;
 import br.edu.unipampa.config.LeConfig;
 import br.edu.unipampa.transferencia.Transferencia;
@@ -17,13 +17,13 @@ public class EntradaSaida {
     private int escolhaInt;
     private String escolhaString;
     private LeConfig leConfig;
-    private Campeonato campeonato;
+    private Jogo jogo;
     private Transferencia transferencia;
 
     public EntradaSaida() {
         this.teclado = new Scanner(System.in);
         this.leConfig = new LeConfig();
-        this.campeonato = new Campeonato();
+        this.jogo = new Jogo();
         this.transferencia = new Transferencia();
     }
 
@@ -32,11 +32,11 @@ public class EntradaSaida {
         String nomeTreinador = informarNomeTreinador();
         Clube timeComandado = escolherTime();
         timeComandado.setTecnico(nomeTreinador);
-        this.leConfig.getClubes().remove(escolhaInt-1);
-        
+        this.leConfig.getClubes().remove(escolhaInt - 1);
+
         this.transferencia.setJogadoresAVendaAtaque(this.leConfig.getJogadoresAVendaAtaque());
         this.transferencia.setJogadoresAVendaDefesa(this.leConfig.getJogadoresAVendaDefesa());
-        
+
         iniciarCampeonato(timeComandado, this.leConfig.getClubes());
     }
 
@@ -76,19 +76,27 @@ public class EntradaSaida {
             }
         }
     }
-    
-    private void iniciarCampeonato(Clube clubeComandado, ArrayList<Clube> clubes){
-        this.campeonato.setClubeComandado(clubeComandado);
-        this.campeonato.setClubes(clubes);        
+
+    private void iniciarCampeonato(Clube clubeComandado, ArrayList<Clube> clubes) {
+        this.jogo.setClubeComandado(clubeComandado);
+        this.jogo.setClubes(clubes);
+
+        System.out.println("\nOlá " + this.jogo.getClubeComandado().getTecnico()+ ", seja bem vindo ao "
+                + this.jogo.getClubeComandado().getNome() + "!\n"
+                + "O campeonato acaba de começar, e você terá " + this.jogo.getClubes().size()
+                + " rodadas para conquistar o título. Boa sorte nessa caminhada!");
+
+        proximoConfronto();
     }
-    
+
+    private void proximoConfronto() {
+        System.out.println("\nPróximo Confronto: " + this.jogo.proximoConfronto());
+    }
+
     /**
      * @return the leConfig
      */
     public LeConfig getLeConfig() {
         return this.leConfig;
     }
-    
-    
-    
 }
