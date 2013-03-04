@@ -12,9 +12,10 @@ public class Campeonato {
     private ArrayList<Clube> clubes;
     private Clube clubeComandado;
     protected int numeroPartidas;
+    private ArrayList<Tabela> tabela;
     
     public Campeonato(){
-        
+        tabela = new ArrayList<>();
     }
 
     /**
