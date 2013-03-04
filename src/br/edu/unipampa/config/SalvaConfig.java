@@ -28,11 +28,11 @@ public class SalvaConfig {
         Clube gremio = new Clube("Grêmio", 150.9, "Luxemburgo");
         Clube juventude = new Clube("Juventude", 34.8, "Lisca");
         Clube esportivo = new Clube("Esportivo", 43.6, "Luis Carlos Wink");
-        Clube guaraniBage = new Clube("Guarani - Bagé", 50000, "Luxemburgo");
+        Clube ceramica = new Clube("Cerâmica", 21.3, "Guilherme Macuglia");
         Clube internacional = new Clube("Internacional", 120.6, "Dunga");
         Clube caxias = new Clube("Caxias", 32.0, "Piccoli");
         Clube saoLuizIjui = new Clube("São Luiz - Ijuí", 28.0, "Paulo Porto");
-        Clube passoFundo = new Clube("Passo Fundo", 50000, "Luxemburgo");
+        Clube saoJose = new Clube("São José", 50000, "Agenor Piccinini");
 
         //cria jogadores 
         criarGremio(gremio);
@@ -41,16 +41,18 @@ public class SalvaConfig {
         criarCaxias(caxias);
         criarEsportivo(esportivo);
         criarJuventude(juventude);
+        criarSaoJose(saoJose);
+        criarCeramica(ceramica);
         
         //add no arraylist os clubes
         this.clubes.add(gremio);
         this.clubes.add(juventude);
         this.clubes.add(esportivo);
-        this.clubes.add(guaraniBage);
+        this.clubes.add(ceramica);
         this.clubes.add(internacional);
         this.clubes.add(caxias);
         this.clubes.add(saoLuizIjui);
-        this.clubes.add(passoFundo);
+        this.clubes.add(saoJose);
 
         //cria jogadores a venda
         criarJogadoresAVenda();
@@ -462,6 +464,142 @@ public class SalvaConfig {
         reserva.add(j15);
         reserva.add(j18);
         juventude.setEscalacaoReserva(reserva);
+    }
+    
+    private void criarCeramica(Clube ceramica){
+         ArrayList<Jogador> jogadorCeramicaAtaque = new ArrayList<>();
+        Jogador j1 = new Jogador("Soares", 72, 12.5, "Brasileiro", 22, PosicaoJogador.ATACANTE, CaracteristicaJogador.ATAQUE, ceramica);
+        jogadorCeramicaAtaque.add(j1);
+        Jogador j2 = new Jogador("Dinei", 84, 15.7, "Brasileiro", 36, PosicaoJogador.ATACANTE, CaracteristicaJogador.ATAQUE, ceramica);
+        jogadorCeramicaAtaque.add(j2);
+        Jogador j3 = new Jogador("Zeferino", 70, 12.4, "Brasileiro", 31, PosicaoJogador.ATACANTE, CaracteristicaJogador.ATAQUE, ceramica);
+        jogadorCeramicaAtaque.add(j3);
+        Jogador j4 = new Jogador("Rafael Carvalho", 78, 15.4, "Brasileiro", 23, PosicaoJogador.MEIO_CAMPO, CaracteristicaJogador.ATAQUE, ceramica);
+        jogadorCeramicaAtaque.add(j4);
+        Jogador j5 = new Jogador("Berg", 72, 10.3, "Brasileiro", 24, PosicaoJogador.MEIO_CAMPO, CaracteristicaJogador.ATAQUE, ceramica);
+        jogadorCeramicaAtaque.add(j5);
+        Jogador j6 = new Jogador("Ramos", 66, 4.5, "Brasileiro", 27, PosicaoJogador.MEIO_CAMPO, CaracteristicaJogador.ATAQUE, ceramica);
+        jogadorCeramicaAtaque.add(j6);
+        Jogador j7 = new Jogador("Zaquel", 69 , 8.3, "Brasileiro", 27, PosicaoJogador.MEIO_CAMPO, CaracteristicaJogador.ATAQUE, ceramica);
+        jogadorCeramicaAtaque.add(j7);
+        ceramica.setAtaque(jogadorCeramicaAtaque);
+        
+         ArrayList<Jogador> jogadorCeramicaDefesa = new ArrayList<>();
+        Jogador j8 = new Jogador("Cesar Luz", 79, 15.7, "Brasileiro", 26, PosicaoJogador.GOLEIRO, CaracteristicaJogador.DEFESA, ceramica );
+        jogadorCeramicaDefesa.add(j8);
+        Jogador j9 = new Jogador("Alexandre Villa", 75, 12.6 , "Brasileiro", 29, PosicaoJogador.GOLEIRO, CaracteristicaJogador.DEFESA, ceramica);
+        jogadorCeramicaDefesa.add(j9);
+        Jogador j10 = new Jogador("Giordano", 70, 8.4, "Brasileiro", 19, PosicaoJogador.LATERAL, CaracteristicaJogador.DEFESA, ceramica);
+        jogadorCeramicaDefesa.add(j10);
+        Jogador j11 = new Jogador("Fábio Fidelis", 75, 12.9, "Brasileiro", 26, PosicaoJogador.LATERAL, CaracteristicaJogador.DEFESA, ceramica);
+        jogadorCeramicaDefesa.add(j11);
+        Jogador j12 = new Jogador("Rodrigão", 77, 9.7, "Brasileiro", 32, PosicaoJogador.ZAGUEIRO, CaracteristicaJogador.DEFESA, ceramica);
+        jogadorCeramicaDefesa.add(j12);
+        Jogador j13 = new Jogador("Xande", 76, 10.3, "Brasileiro", 19, PosicaoJogador.ZAGUEIRO, CaracteristicaJogador.DEFESA, ceramica);
+        jogadorCeramicaDefesa.add(j13);
+        Jogador j14 = new Jogador("Alexandre Bindé", 75, 5.7, "Brasileiro", 29, PosicaoJogador.LATERAL, CaracteristicaJogador.DEFESA, ceramica);
+        jogadorCeramicaDefesa.add(j14);
+        Jogador j15 = new Jogador("Felipe Pinto", 69, 7.5, "Brasileiro", 27, PosicaoJogador.VOLANTE, CaracteristicaJogador.DEFESA, ceramica);
+        jogadorCeramicaDefesa.add(j15); 
+        Jogador j16 = new Jogador("Danilo Goiano", 75, 10.3, "Brasileiro", 29, PosicaoJogador.VOLANTE, CaracteristicaJogador.DEFESA, ceramica);
+        jogadorCeramicaDefesa.add(j16);
+        Jogador j17 = new Jogador("Serginho Catarinense", 72, 9.4, "Brasileiro", 33, PosicaoJogador.ZAGUEIRO, CaracteristicaJogador.DEFESA, ceramica);
+        jogadorCeramicaDefesa.add(j17);
+        Jogador j18 = new Jogador("Geninho", 75, 13.3, "Brasileiro", 21, PosicaoJogador.ZAGUEIRO, CaracteristicaJogador.DEFESA, ceramica);
+        jogadorCeramicaDefesa.add(j18);
+        ceramica.setDefesa(jogadorCeramicaDefesa);
+        
+         ArrayList<Jogador> titular = new ArrayList<>();
+        titular.add(j8);
+        titular.add(j9);
+        titular.add(j11);
+        titular.add(j17);
+        titular.add(j14);
+        titular.add(j16);
+        titular.add(j12);
+        titular.add(j5);
+        titular.add(j3);
+        titular.add(j1);
+        titular.add(j2);
+        ceramica.setEscalacaoTitular(titular);
+
+        ArrayList<Jogador> reserva = new ArrayList<>();
+        reserva.add(j4);
+        reserva.add(j6);
+        reserva.add(j7);
+        reserva.add(j10);
+        reserva.add(j13);
+        reserva.add(j15);
+        reserva.add(j18);
+        ceramica.setEscalacaoReserva(reserva);
+    }
+    
+    private void criarSaoJose(Clube saoJose){
+         ArrayList<Jogador> jogadorSaoJoseAtaque = new ArrayList<>();
+        Jogador j1 = new Jogador("Lucas Gaúcho", 81, 20.5, "Brasileiro", 21, PosicaoJogador.ATACANTE, CaracteristicaJogador.ATAQUE, saoJose);
+        jogadorSaoJoseAtaque.add(j1);
+        Jogador j2 = new Jogador("Leandro", 74, 12.7, "Brasileiro", 21, PosicaoJogador.ATACANTE, CaracteristicaJogador.ATAQUE, saoJose);
+        jogadorSaoJoseAtaque.add(j2);
+        Jogador j3 = new Jogador("Luizinho", 69, 7.4, "Brasileiro", 29, PosicaoJogador.ATACANTE, CaracteristicaJogador.ATAQUE, saoJose);
+        jogadorSaoJoseAtaque.add(j3);
+        Jogador j4 = new Jogador("Bruno Martins", 88, 6.4, "Brasileiro", 23, PosicaoJogador.MEIO_CAMPO, CaracteristicaJogador.ATAQUE, saoJose);
+        jogadorSaoJoseAtaque.add(j4);
+        Jogador j5 = new Jogador("Negreiros", 72, 10.3, "Brasileiro", 19, PosicaoJogador.MEIO_CAMPO, CaracteristicaJogador.ATAQUE, saoJose);
+        jogadorSaoJoseAtaque.add(j5);
+        Jogador j6 = new Jogador("Rogério", 69, 7.5, "Brasileiro", 19, PosicaoJogador.MEIO_CAMPO, CaracteristicaJogador.ATAQUE, saoJose);
+        jogadorSaoJoseAtaque.add(j6);
+        Jogador j7 = new Jogador("Maycon", 70 , 10.3, "Brasileiro", 28, PosicaoJogador.MEIO_CAMPO, CaracteristicaJogador.ATAQUE, saoJose);
+        jogadorSaoJoseAtaque.add(j7);
+        saoJose.setAtaque(jogadorSaoJoseAtaque);
+        
+        ArrayList<Jogador> jogadorSaoJoseDefesa = new ArrayList<>();
+        Jogador j8 = new Jogador("Luis Carlos", 81, 18.7, "Brasileiro", 24, PosicaoJogador.GOLEIRO, CaracteristicaJogador.DEFESA, saoJose );
+        jogadorSaoJoseDefesa.add(j8);
+        Jogador j9 = new Jogador("Vitor", 72, 10.6 , "Brasileiro", 27, PosicaoJogador.GOLEIRO, CaracteristicaJogador.DEFESA, saoJose);
+        jogadorSaoJoseDefesa.add(j9);
+        Jogador j10 = new Jogador("Marco Militão", 81, 18.4, "Brasileiro", 22, PosicaoJogador.ZAGUEIRO, CaracteristicaJogador.DEFESA, saoJose);
+        jogadorSaoJoseDefesa.add(j10);
+        Jogador j11 = new Jogador("Ronaldo Conceição", 79, 15.9, "Brasileiro", 25, PosicaoJogador.ZAGUEIRO, CaracteristicaJogador.DEFESA, saoJose);
+        jogadorSaoJoseDefesa.add(j11);
+        Jogador j12 = new Jogador("Ganzer", 71, 9.7, "Brasileiro", 16, PosicaoJogador.LATERAL, CaracteristicaJogador.DEFESA, saoJose);
+        jogadorSaoJoseDefesa.add(j12);
+        Jogador j13 = new Jogador("Fernando Belém", 76, 10.3, "Brasileiro", 23, PosicaoJogador.LATERAL, CaracteristicaJogador.DEFESA, saoJose);
+        jogadorSaoJoseDefesa.add(j13);
+        Jogador j14 = new Jogador("Thiago Matos", 72, 8.7, "Brasileiro", 29, PosicaoJogador.LATERAL, CaracteristicaJogador.DEFESA, saoJose);
+        jogadorSaoJoseDefesa.add(j14);
+        Jogador j15 = new Jogador("Fuska o", 75, 9.5, "Brasileiro", 29, PosicaoJogador.VOLANTE, CaracteristicaJogador.DEFESA, saoJose);
+        jogadorSaoJoseDefesa.add(j15); 
+        Jogador j16 = new Jogador("Goiano", 81, 14.7, "Brasileiro", 33, PosicaoJogador.VOLANTE, CaracteristicaJogador.DEFESA, saoJose);
+        jogadorSaoJoseDefesa.add(j16);
+        Jogador j17 = new Jogador("Dinho", 81, 9.4, "Brasileiro", 29, PosicaoJogador.VOLANTE, CaracteristicaJogador.DEFESA, saoJose);
+        jogadorSaoJoseDefesa.add(j17);
+        Jogador j18 = new Jogador("Gabirú", 73, 6.3, "Brasileiro", 34, PosicaoJogador.ZAGUEIRO, CaracteristicaJogador.DEFESA, saoJose);
+        jogadorSaoJoseDefesa.add(j18);
+        saoJose.setDefesa(jogadorSaoJoseDefesa);
+        
+         ArrayList<Jogador> titular = new ArrayList<>();
+        titular.add(j8);
+        titular.add(j9);
+        titular.add(j11);
+        titular.add(j17);
+        titular.add(j14);
+        titular.add(j16);
+        titular.add(j12);
+        titular.add(j5);
+        titular.add(j3);
+        titular.add(j1);
+        titular.add(j2);
+        saoJose.setEscalacaoTitular(titular);
+
+        ArrayList<Jogador> reserva = new ArrayList<>();
+        reserva.add(j4);
+        reserva.add(j6);
+        reserva.add(j7);
+        reserva.add(j10);
+        reserva.add(j13);
+        reserva.add(j15);
+        reserva.add(j18);
+        saoJose.setEscalacaoReserva(reserva);
     }
     
     private void criarJogadoresAVenda() {
