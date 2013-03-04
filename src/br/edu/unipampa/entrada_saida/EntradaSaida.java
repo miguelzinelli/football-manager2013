@@ -86,25 +86,35 @@ public class EntradaSaida {
                 + "O campeonato acaba de começar, e você terá " + this.jogo.getClubes().size()
                 + " rodadas para conquistar o título. Boa sorte nessa caminhada!");
 
-        mostrarMenuPrincipal();
+        mostrarMenuPrincipal(true);
     }
 
     private void proximoConfronto() {
         System.out.println("\nPróximo Confronto: " + this.jogo.proximoConfronto());
     }
 
-    private String mostrarMenuPrincipal() {
-        proximoConfronto();
+    private boolean mostrarMenuPrincipal(boolean mostrarProximoConfronto) {
+        if (mostrarProximoConfronto) {
+            proximoConfronto();
+        }
         System.out.println(
                 "------------------------------------------------------------------------------------------------------------------------------------------------------------"
                 + "\nO que deseja fazer?\n     Tecle '1' para Escalar Time    -    Tecle '2' para Classificação    -    Tecle '3' para Iniciar Jogo    -    Tecle '4' para Comprar/Vender Jogador"
                 + "\n------------------------------------------------------------------------------------------------------------------------------------------------------------");
         this.escolhaString = teclado.next();
         if (this.escolhaString.equals("1") || (this.escolhaString.equals("2")) || (this.escolhaString.equals("3")) || (this.escolhaString.equals("4"))) {
-            return this.escolhaString;
+            executarAcaoEscolhidaMenuPrincipal(this.escolhaString);
+            return true;
         } else {
             System.out.println("Caracter Inválido!!! Digite Novamente: ");
-            return mostrarMenuPrincipal();
+            return mostrarMenuPrincipal(true);
+        }
+    }
+
+    private void executarAcaoEscolhidaMenuPrincipal(String escolha) {
+        if (escolha.equals("4")) {
+            proximoConfronto();
+            mostrarMenuPrincipal(false);
         }
     }
 
