@@ -107,4 +107,10 @@ public class Clube implements Serializable {
     public void setEscalacaoReserva(ArrayList<Jogador> escalacaoReserva) {
         this.escalacaoReserva = escalacaoReserva;
     }
+    
+    public void addJogadorDefesa(Jogador jogador){
+        this.defesa.add(jogador);
+        this.escalacaoReserva.add(jogador);
+        this.financas -= jogador.getValor();
+    }
 }

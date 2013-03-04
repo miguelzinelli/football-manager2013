@@ -4,6 +4,7 @@
  */
 package br.edu.unipampa.transferencia;
 
+import br.edu.unipampa.clube.Clube;
 import br.edu.unipampa.jogador.Jogador;
 import java.util.ArrayList;
 
@@ -16,8 +17,13 @@ public class Transferencia {
     private ArrayList<Jogador> jogadoresAVendaAtaque;
     private ArrayList<Jogador> jogadoresAVendaDefesa;
     
-    public void comprarJogador(){
-        
+    public boolean comprarJogador(Clube clube, Jogador jogador){
+        if (clube.getFinancas() >= jogador.getValor()) {
+            clube.addJogadorDefesa(jogador);
+            return true;
+        } else {
+            return false;   
+        }        
     }
     
     public void venderJogador(){

@@ -152,6 +152,8 @@ public class EntradaSaida {
                             numeroPosJogador++;
                         }
                     }
+
+                    comprarJogador(numeroPosJogador - 1);
                 }
             } else {
             }
@@ -166,6 +168,38 @@ public class EntradaSaida {
         } else {
             System.out.println("Caracter Inválido!!! Digite Novamente: ");
             return mostrarMenuCompraVendeJogador();
+        }
+    }
+
+    public boolean comprarJogador(int numeroJogadoresAVenda) {
+        System.out.println("Digite o número do jogador que deseja comprar. Digite ZERO para cancelar compra:");
+        boolean caracterInvalido = false;
+        try {
+            this.escolhaInt = Integer.parseInt(teclado.nextLine());
+        } catch (NumberFormatException e) {
+            caracterInvalido = true;
+        }
+
+        if (caracterInvalido) {
+            System.out.println("\nCaracter Inválido!!! Digite Novamente: ");
+            return comprarJogador(numeroJogadoresAVenda);
+        } else {
+            if (this.escolhaInt >= 0 && this.escolhaInt <= numeroJogadoresAVenda) {
+                if (this.escolhaInt == 0) {
+                    mostrarMenuPrincipal();
+                } else {
+                    if (this.transferencia.comprarJogador(this.jogo.getClubeComandado(),
+                            this.transferencia.getJogadoresAVendaDefesa().get(numeroJogadoresAVenda - 1))) {
+                        System.out.println("Jogador integrado ao seu plantel.\n"
+                                + "O valor em caixa do clube está em: "
+                                + this.jogo.getClubeComandado().getFinancas());
+                    }
+                }
+                return true;
+            } else {
+                System.out.println("Jogador não encontrado!!! Digite Novamente: ");
+                return comprarJogador(numeroJogadoresAVenda);
+            }
         }
     }
 
