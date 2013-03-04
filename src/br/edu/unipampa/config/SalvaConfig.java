@@ -299,6 +299,55 @@ public class SalvaConfig {
         Jogador j7 = new Jogador("Umberto", 70, 9.3, "Brasileiro", 29, PosicaoJogador.MEIO_CAMPO, CaracteristicaJogador.ATAQUE, caxias);
         jogadorCaxiasAtaque.add(j7);
         caxias.setAtaque(jogadorCaxiasAtaque);
+        
+         ArrayList<Jogador> jogadorCaxiasDefesa = new ArrayList<>();
+        Jogador j8 = new Jogador("Anderson", 70, 7.7, "Brasileiro", 26, PosicaoJogador.GOLEIRO, CaracteristicaJogador.DEFESA, caxias);
+        jogadorCaxiasDefesa.add(j8);
+        Jogador j9 = new Jogador("André Zuba", 75, 12.6 , "Brasileiro", 34, PosicaoJogador.GOLEIRO, CaracteristicaJogador.DEFESA, caxias);
+        jogadorCaxiasDefesa.add(j9);
+        Jogador j10 = new Jogador("Lino", 74, 9.4, "Brasileiro", 28, PosicaoJogador.ZAGUEIRO, CaracteristicaJogador.DEFESA, caxias);
+        jogadorCaxiasDefesa.add(j10);
+        Jogador j11 = new Jogador("Léo Norte", 69, 5.9, "Brasileiro", 23, PosicaoJogador.ZAGUEIRO, CaracteristicaJogador.DEFESA, caxias);
+        jogadorCaxiasDefesa.add(j11);
+        Jogador j12 = new Jogador("Dener", 67, 3.7, "Brasileiro", 21, PosicaoJogador.LATERAL, CaracteristicaJogador.DEFESA, caxias);
+        jogadorCaxiasDefesa.add(j12);
+        Jogador j13 = new Jogador("Jackson", 70, 7.3, "Brasileiro", 29, PosicaoJogador.LATERAL, CaracteristicaJogador.DEFESA, caxias);
+        jogadorCaxiasDefesa.add(j13);
+        Jogador j14 = new Jogador("Diego", 64, 4.7, "Brasileiro", 20, PosicaoJogador.LATERAL, CaracteristicaJogador.DEFESA, caxias);
+        jogadorCaxiasDefesa.add(j14);
+        Jogador j15 = new Jogador("Alexandre", 75, 7.5, "Brasileiro", 24, PosicaoJogador.VOLANTE, CaracteristicaJogador.DEFESA, caxias);
+        jogadorCaxiasDefesa.add(j15);
+        Jogador j16 = new Jogador("Victor", 80, 25.8, "Brasileiro", 18, PosicaoJogador.VOLANTE, CaracteristicaJogador.DEFESA, caxias);
+        jogadorCaxiasDefesa.add(j16);
+        Jogador j17 = new Jogador("Marcelo Carvalho", 69, 3.4, "Brasileiro", 21, PosicaoJogador.ZAGUEIRO, CaracteristicaJogador.DEFESA, caxias);
+        jogadorCaxiasDefesa.add(j17);
+        Jogador j18 = new Jogador("Umberto", 70, 9.3, "Brasileiro", 29, PosicaoJogador.VOLANTE, CaracteristicaJogador.DEFESA, caxias);
+        jogadorCaxiasDefesa.add(j18);
+        caxias.setDefesa(jogadorCaxiasDefesa);
+        
+        ArrayList<Jogador> titular = new ArrayList<>();
+        titular.add(j8);
+        titular.add(j9);
+        titular.add(j11);
+        titular.add(j17);
+        titular.add(j14);
+        titular.add(j16);
+        titular.add(j12);
+        titular.add(j5);
+        titular.add(j3);
+        titular.add(j1);
+        titular.add(j2);
+        caxias.setEscalacaoTitular(titular);
+
+        ArrayList<Jogador> reserva = new ArrayList<>();
+        reserva.add(j4);
+        reserva.add(j6);
+        reserva.add(j7);
+        reserva.add(j10);
+        reserva.add(j13);
+        reserva.add(j15);
+        reserva.add(j18);
+        caxias.setEscalacaoReserva(reserva);
     }
 
     private void criarJogadoresAVenda() {
