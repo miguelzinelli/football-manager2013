@@ -39,7 +39,9 @@ public class SalvaConfig {
         criarInternacional(internacional);
         criarSaoLuiz(saoLuizIjui);
         criarCaxias(caxias);
-
+        criarEsportivo(esportivo);
+        criarJuventude(juventude);
+        
         //add no arraylist os clubes
         this.clubes.add(gremio);
         this.clubes.add(juventude);
