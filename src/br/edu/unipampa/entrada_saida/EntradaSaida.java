@@ -1,9 +1,10 @@
 package br.edu.unipampa.entrada_saida;
 
-import br.edu.unipampa.campeonato.Jogo;
+import br.edu.unipampa.campeonato.Partida;
 import br.edu.unipampa.clube.Clube;
 import br.edu.unipampa.config.LeConfig;
 import br.edu.unipampa.config.SalvaConfig;
+import br.edu.unipampa.jogador.Jogador;
 import br.edu.unipampa.transferencia.Transferencia;
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -18,14 +19,14 @@ public class EntradaSaida {
     private int escolhaInt;
     private String escolhaString;
     private LeConfig leConfig;
-    private Jogo jogo;
+    private Partida jogo;
     private Transferencia transferencia;
     private SalvaConfig sc;
-    
+
     public EntradaSaida() {
         this.teclado = new Scanner(System.in);
         this.leConfig = new LeConfig();
-        this.jogo = new Jogo();
+        this.jogo = new Partida();
         this.transferencia = new Transferencia();
     }
 
@@ -128,11 +129,11 @@ public class EntradaSaida {
                     if (!this.transferencia.getJogadoresAVendaDefesa().isEmpty()) {
                         System.out.println("\n  --> Jogadores de Defesa:");
                         for (int x = 0; x < this.transferencia.getJogadoresAVendaDefesa().size(); x++) {
-                            System.out.println("  '" + (numeroPosJogador + 1) + "' " + this.transferencia.getJogadoresAVendaDefesa().get(x).getNome() 
-                                    + " - Força: " + this.transferencia.getJogadoresAVendaDefesa().get(x).getForca() 
-                                    + " - Idade: "+ this.transferencia.getJogadoresAVendaDefesa().get(x).getIdade() 
-                                    + " - Nacionalidade: "+ this.transferencia.getJogadoresAVendaDefesa().get(x).getNacionalidade()
-                                    + " - Posição: "+ this.transferencia.getJogadoresAVendaDefesa().get(x).getPosicao()
+                            System.out.println("  '" + (numeroPosJogador + 1) + "' " + this.transferencia.getJogadoresAVendaDefesa().get(x).getNome()
+                                    + " - Força: " + this.transferencia.getJogadoresAVendaDefesa().get(x).getForca()
+                                    + " - Idade: " + this.transferencia.getJogadoresAVendaDefesa().get(x).getIdade()
+                                    + " - Nacionalidade: " + this.transferencia.getJogadoresAVendaDefesa().get(x).getNacionalidade()
+                                    + " - Posição: " + this.transferencia.getJogadoresAVendaDefesa().get(x).getPosicao()
                                     + " - Valor: " + this.transferencia.getJogadoresAVendaDefesa().get(x).getValor());
                             numeroPosJogador++;
                         }
@@ -141,11 +142,11 @@ public class EntradaSaida {
                     if (!this.transferencia.getJogadoresAVendaAtaque().isEmpty()) {
                         System.out.println("\n  --> Jogadores de Ataque:");
                         for (int y = 0; y < this.transferencia.getJogadoresAVendaAtaque().size(); y++) {
-                            System.out.println("  '" + (numeroPosJogador + 1) + "' " + this.transferencia.getJogadoresAVendaAtaque().get(y).getNome() 
-                                    + " - Força: " + this.transferencia.getJogadoresAVendaAtaque().get(y).getForca() 
-                                    + " - Idade: "+ this.transferencia.getJogadoresAVendaAtaque().get(y).getIdade() 
-                                    + " - Nacionalidade: "+ this.transferencia.getJogadoresAVendaAtaque().get(y).getNacionalidade()
-                                    + " - Posição: "+ this.transferencia.getJogadoresAVendaAtaque().get(y).getPosicao()
+                            System.out.println("  '" + (numeroPosJogador + 1) + "' " + this.transferencia.getJogadoresAVendaAtaque().get(y).getNome()
+                                    + " - Força: " + this.transferencia.getJogadoresAVendaAtaque().get(y).getForca()
+                                    + " - Idade: " + this.transferencia.getJogadoresAVendaAtaque().get(y).getIdade()
+                                    + " - Nacionalidade: " + this.transferencia.getJogadoresAVendaAtaque().get(y).getNacionalidade()
+                                    + " - Posição: " + this.transferencia.getJogadoresAVendaAtaque().get(y).getPosicao()
                                     + " - Valor: " + this.transferencia.getJogadoresAVendaAtaque().get(y).getValor());
                             numeroPosJogador++;
                         }
@@ -173,30 +174,24 @@ public class EntradaSaida {
     public LeConfig getLeConfig() {
         return this.leConfig;
     }
-    
-    public void escalaTime(Clube clube){
-       System.out.println("******** Definir Escalação ********");
-         
-       System.out.println("-> Digite 1 para escolher 4-4-2\n-> Digite 2 para escolher 4-3-3\n -> Digite 3 para escolher 4-5-1\n -> Digite 4 para escolher 3-5-2");
-       this.escolhaInt = teclado.nextInt();
-        if (escolhaInt == 1) {
-          
-        }else{
-            if (escolhaInt == 2) {
-                
-            }else{
-                if (escolhaInt == 3) {
-                    
-                }else{
-                    if (escolhaInt == 4) {
-                        
-                    }
-                }
+
+    public void escalarTime() {
+        System.out.println("******** Definir Escalação ********");
+        System.out.println("*****Escolha os jogadores para respectiva posição entre os titulares: ");
+        escolhaInt = teclado.nextInt();
+
+    }
+
+    private void definirFormacao(ArrayList escolhidos, Jogador jogadorEscolhido) {
+
+        for (int i = 0; i < this.jogo.getClubeComandado().getAtaque().size(); i++) {
+
+            if (this.jogo.getClubeComandado().getAtaque().contains(jogadorEscolhido)) {
+                escolhidos.add(jogadorEscolhido);
+
             }
         }
         
-        
-        
-        
     }
+    
 }

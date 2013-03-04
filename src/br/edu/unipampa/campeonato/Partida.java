@@ -1,14 +1,18 @@
 package br.edu.unipampa.campeonato;
 
+import br.edu.unipampa.entrada_saida.EntradaSaida;
+import br.edu.unipampa.jogador.Jogador;
+import java.util.ArrayList;
+
 /**
  *
  * @author Alex
  */
-public class Jogo extends Campeonato {
+public class Partida extends Campeonato {
 
     private int numeroSubstituicao;
 
-    public Jogo() {
+    public Partida() {
         this.numeroSubstituicao = 3;
     }
 
