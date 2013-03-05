@@ -57,7 +57,7 @@ public class SalvarConfig {
     }
 
     public void salvar() throws Exception {
-        FileOutputStream fos = new FileOutputStream("build\\config.ser");
+        FileOutputStream fos = new FileOutputStream("config\\config.ser");
         ObjectOutputStream oos = new ObjectOutputStream(fos);
 
         for (int i = 0; i < this.clubes.size(); i++) {

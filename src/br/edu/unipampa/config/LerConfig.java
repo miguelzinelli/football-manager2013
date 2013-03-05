@@ -20,7 +20,7 @@ public class LerConfig {
     }
 
     public void ler() throws Exception {
-        FileInputStream fis = new FileInputStream("build\\config.ser");
+        FileInputStream fis = new FileInputStream("config\\config.ser");
         ObjectInputStream ois = new ObjectInputStream(fis);
 
         for (int i = 0; i < 8; i++) {

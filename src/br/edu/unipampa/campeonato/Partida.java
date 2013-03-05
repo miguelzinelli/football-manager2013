@@ -25,7 +25,4 @@ public class Partida extends Campeonato {
     public void substituicao() {
     }
 
-    public String proximoConfronto() {
-        return this.getClubeComandado().getNome() + " x " + this.getClubes().get(this.numeroPartidas - 1).getNome();
-    }
 }

@@ -47,5 +47,7 @@ public class Campeonato {
         this.clubeComandado = clubeComandado;
     }
     
-    
+    public String proximoConfronto() {
+        return this.getClubeComandado().getNome() + " x " + this.getClubes().get(this.numeroPartidas - 1).getNome();
+    }    
 }
