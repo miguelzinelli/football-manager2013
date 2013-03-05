@@ -14,13 +14,11 @@ import java.util.ArrayList;
 public class SalvarConfig {
 
     private ArrayList<Clube> clubes;
-    private ArrayList<Jogador> jogadoresAVendaAtaque;
-    private ArrayList<Jogador> jogadoresAVendaDefesa;
+    private ArrayList<Jogador> jogadoresAVenda;
 
     public SalvarConfig() {
         this.clubes = new ArrayList<>();
-        this.jogadoresAVendaAtaque = new ArrayList<>();
-        this.jogadoresAVendaDefesa = new ArrayList<>();
+        this.jogadoresAVenda = new ArrayList<>();
     }
 
     public void criarTimesJogadores() {
@@ -66,12 +64,8 @@ public class SalvarConfig {
             oos.writeObject(this.clubes.get(i));
         }
 
-        for (int i = 0; i < this.jogadoresAVendaAtaque.size(); i++) {
-            oos.writeObject(this.jogadoresAVendaAtaque.get(i));
-        }
-
-        for (int i = 0; i < this.jogadoresAVendaDefesa.size(); i++) {
-            oos.writeObject(this.jogadoresAVendaDefesa.get(i));
+        for (int i = 0; i < this.jogadoresAVenda.size(); i++) {
+            oos.writeObject(this.jogadoresAVenda.get(i));
         }
 
         oos.flush();
@@ -603,16 +597,18 @@ public class SalvarConfig {
     }
 
     private void criarJogadoresAVenda() {
-        this.jogadoresAVendaAtaque.add(new Jogador("Messi", 82, 90.0, "Argentino", 23, PosicaoJogador.ATACANTE, CaracteristicaJogador.ATAQUE, null));
-        this.jogadoresAVendaAtaque.add(new Jogador("Cristiano Ronaldo", 90, 100.0, "Português", 25, PosicaoJogador.ATACANTE, CaracteristicaJogador.ATAQUE, null));
-        this.jogadoresAVendaAtaque.add(new Jogador("Miguel", 98, 78.3, "Paraguaio", 23, PosicaoJogador.MEIO_CAMPO, CaracteristicaJogador.ATAQUE, null));
-        this.jogadoresAVendaAtaque.add(new Jogador("Delofeo", 85, 2.9, "Espanhol", 17, PosicaoJogador.MEIO_CAMPO, CaracteristicaJogador.ATAQUE, null));
-        this.jogadoresAVendaAtaque.add(new Jogador("Ewerson", 81, 13.6, "Brasileiro", 31, PosicaoJogador.ATACANTE, CaracteristicaJogador.ATAQUE, null));
+        //ataque
+        this.jogadoresAVenda.add(new Jogador("Messi", 82, 90.0, "Argentino", 23, PosicaoJogador.ATACANTE, CaracteristicaJogador.ATAQUE, null));
+        this.jogadoresAVenda.add(new Jogador("Cristiano Ronaldo", 90, 100.0, "Português", 25, PosicaoJogador.ATACANTE, CaracteristicaJogador.ATAQUE, null));
+        this.jogadoresAVenda.add(new Jogador("Miguel", 98, 78.3, "Paraguaio", 23, PosicaoJogador.MEIO_CAMPO, CaracteristicaJogador.ATAQUE, null));
+        this.jogadoresAVenda.add(new Jogador("Delofeo", 85, 2.9, "Espanhol", 17, PosicaoJogador.MEIO_CAMPO, CaracteristicaJogador.ATAQUE, null));
+        this.jogadoresAVenda.add(new Jogador("Ewerson", 81, 13.6, "Brasileiro", 31, PosicaoJogador.ATACANTE, CaracteristicaJogador.ATAQUE, null));
 
-        this.jogadoresAVendaDefesa.add(new Jogador("Paulão", 80, 20.0, "Africano", 31, PosicaoJogador.ZAGUEIRO, CaracteristicaJogador.DEFESA, null));
-        this.jogadoresAVendaDefesa.add(new Jogador("Arex", 77, 19.0, "Paraguaio", 23, PosicaoJogador.LATERAL, CaracteristicaJogador.DEFESA, null));
-        this.jogadoresAVendaDefesa.add(new Jogador("Sebastião", 77, 13.1, "Brasileiro", 22, PosicaoJogador.VOLANTE, CaracteristicaJogador.DEFESA, null));
-        this.jogadoresAVendaDefesa.add(new Jogador("Vinicius", 2, 0.1, "Argentino", 36, PosicaoJogador.GOLEIRO, CaracteristicaJogador.DEFESA, null));
-        this.jogadoresAVendaDefesa.add(new Jogador("Antoni", 79, 7.9, "Italiano", 18, PosicaoJogador.ZAGUEIRO, CaracteristicaJogador.DEFESA, null));
+        //defesa
+        this.jogadoresAVenda.add(new Jogador("Paulão", 80, 20.0, "Africano", 31, PosicaoJogador.ZAGUEIRO, CaracteristicaJogador.DEFESA, null));
+        this.jogadoresAVenda.add(new Jogador("Arex", 77, 19.0, "Paraguaio", 23, PosicaoJogador.LATERAL, CaracteristicaJogador.DEFESA, null));
+        this.jogadoresAVenda.add(new Jogador("Sebastião", 77, 13.1, "Brasileiro", 22, PosicaoJogador.VOLANTE, CaracteristicaJogador.DEFESA, null));
+        this.jogadoresAVenda.add(new Jogador("Vinicius", 2, 0.1, "Argentino", 36, PosicaoJogador.GOLEIRO, CaracteristicaJogador.DEFESA, null));
+        this.jogadoresAVenda.add(new Jogador("Antoni", 79, 7.9, "Italiano", 18, PosicaoJogador.ZAGUEIRO, CaracteristicaJogador.DEFESA, null));
     }
 }

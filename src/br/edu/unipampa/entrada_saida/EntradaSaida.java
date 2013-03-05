@@ -21,7 +21,6 @@ public class EntradaSaida {
     private LerConfig lerConfig;
     private Partida jogo;
     private Transferencia transferencia;
-    private SalvarConfig sc;
 
     public EntradaSaida() {
         this.teclado = new Scanner(System.in);
@@ -31,14 +30,13 @@ public class EntradaSaida {
     }
 
     public void iniciarJogo() {
-        System.out.println("Bem Vindo ao FootballPampa!\n");
+        System.out.println("***** Bem Vindo ao FootballPampa! *****\n");
         String nomeTreinador = informarNomeTreinador();
         Clube timeComandado = escolherTime();
         timeComandado.setTecnico(nomeTreinador);
         this.lerConfig.getClubes().remove(escolhaInt - 1);
 
-        this.transferencia.setJogadoresAVendaAtaque(this.lerConfig.getJogadoresAVendaAtaque());
-        this.transferencia.setJogadoresAVendaDefesa(this.lerConfig.getJogadoresAVendaDefesa());
+        this.transferencia.setJogadoresAVenda(this.lerConfig.getJogadoresAVenda());
 
         iniciarCampeonato(timeComandado, this.lerConfig.getClubes());
     }
@@ -120,40 +118,22 @@ public class EntradaSaida {
         if (escolha.equals("4")) {
             escolha = mostrarMenuCompraVendeJogador();
             if (escolha.equals("1")) {
-                int numeroPosJogador = 0;
-
-                if (this.transferencia.getJogadoresAVendaDefesa().isEmpty()
-                        && (this.transferencia.getJogadoresAVendaAtaque().isEmpty())) {
-                    System.out.println("\nNenhum jogador disponível a compra.");
+                if (this.transferencia.getJogadoresAVenda().isEmpty()) {
+                    System.out.println("\nNenhum jogador disponível para compra.");
                 } else {
+                    System.out.println("\nSaldo disponível na conta do clube: " + this.jogo.getClubeComandado().getFinancas());
                     System.out.println("\nJogadores disponíveis para compra:");
-                    if (!this.transferencia.getJogadoresAVendaDefesa().isEmpty()) {
-                        System.out.println("\n  --> Jogadores de Defesa:");
-                        for (int x = 0; x < this.transferencia.getJogadoresAVendaDefesa().size(); x++) {
-                            System.out.println("  '" + (numeroPosJogador + 1) + "' " + this.transferencia.getJogadoresAVendaDefesa().get(x).getNome()
-                                    + " - Força: " + this.transferencia.getJogadoresAVendaDefesa().get(x).getForca()
-                                    + " - Idade: " + this.transferencia.getJogadoresAVendaDefesa().get(x).getIdade()
-                                    + " - Nacionalidade: " + this.transferencia.getJogadoresAVendaDefesa().get(x).getNacionalidade()
-                                    + " - Posição: " + this.transferencia.getJogadoresAVendaDefesa().get(x).getPosicao()
-                                    + " - Valor: " + this.transferencia.getJogadoresAVendaDefesa().get(x).getValor());
-                            numeroPosJogador++;
-                        }
+                    int i;
+                    for (i = 0; i < this.transferencia.getJogadoresAVenda().size(); i++) {
+                        System.out.println("  '" + (i + 1) + "' " + this.transferencia.getJogadoresAVenda().get(i).getNome()
+                                + " - Força: " + this.transferencia.getJogadoresAVenda().get(i).getForca()
+                                + " - Idade: " + this.transferencia.getJogadoresAVenda().get(i).getIdade()
+                                + " - Nacionalidade: " + this.transferencia.getJogadoresAVenda().get(i).getNacionalidade()
+                                + " - Posição: " + this.transferencia.getJogadoresAVenda().get(i).getPosicao()
+                                + " - Característica: " + this.transferencia.getJogadoresAVenda().get(i).getCaracteristica()
+                                + " - Valor: " + this.transferencia.getJogadoresAVenda().get(i).getValor());
                     }
-
-                    if (!this.transferencia.getJogadoresAVendaAtaque().isEmpty()) {
-                        System.out.println("\n  --> Jogadores de Ataque:");
-                        for (int y = 0; y < this.transferencia.getJogadoresAVendaAtaque().size(); y++) {
-                            System.out.println("  '" + (numeroPosJogador + 1) + "' " + this.transferencia.getJogadoresAVendaAtaque().get(y).getNome()
-                                    + " - Força: " + this.transferencia.getJogadoresAVendaAtaque().get(y).getForca()
-                                    + " - Idade: " + this.transferencia.getJogadoresAVendaAtaque().get(y).getIdade()
-                                    + " - Nacionalidade: " + this.transferencia.getJogadoresAVendaAtaque().get(y).getNacionalidade()
-                                    + " - Posição: " + this.transferencia.getJogadoresAVendaAtaque().get(y).getPosicao()
-                                    + " - Valor: " + this.transferencia.getJogadoresAVendaAtaque().get(y).getValor());
-                            numeroPosJogador++;
-                        }
-                    }
-
-                    comprarJogador(numeroPosJogador - 1);
+                    comprarJogador(i);
                 }
             } else {
             }
@@ -175,7 +155,7 @@ public class EntradaSaida {
         System.out.println("Digite o número do jogador que deseja comprar. Digite ZERO para cancelar compra:");
         boolean caracterInvalido = false;
         try {
-            this.escolhaInt = Integer.parseInt(teclado.nextLine());
+            this.escolhaInt = Integer.parseInt(teclado.next());
         } catch (NumberFormatException e) {
             caracterInvalido = true;
         }
@@ -185,16 +165,26 @@ public class EntradaSaida {
             return comprarJogador(numeroJogadoresAVenda);
         } else {
             if (this.escolhaInt >= 0 && this.escolhaInt <= numeroJogadoresAVenda) {
-                if (this.escolhaInt == 0) {
-                    mostrarMenuPrincipal();
-                } else {
+                if (this.escolhaInt != 0) {
                     if (this.transferencia.comprarJogador(this.jogo.getClubeComandado(),
-                            this.transferencia.getJogadoresAVendaDefesa().get(numeroJogadoresAVenda - this.transferencia.getJogadoresAVendaDefesa().size() - 1))) {
-                        System.out.println("Jogador integrado ao seu plantel.\n"
+                            this.transferencia.getJogadoresAVenda().get(escolhaInt - 1))) {
+                        System.out.println("\nParabéns!! Você fez um excelente negócio ao contratar o jogador "
+                                + this.transferencia.getJogadoresAVenda().get(escolhaInt - 1).getNome()
+                                + ", e ele já está integrado ao seu plantel.\n"
                                 + "O valor em caixa do clube está em: "
-                                + this.jogo.getClubeComandado().getFinancas());
+                                + this.jogo.getClubeComandado().getFinancas() + "\n");
+                    } else {
+                        System.out.println("\nVocê não possui dinheiro para compra o jogador "
+                                + this.transferencia.getJogadoresAVenda().get(escolhaInt - 1).getNome() + "\n");
                     }
                 }
+                for (int x = 0; x < this.jogo.getClubeComandado().getAtaque().size(); x++) {
+                    System.out.println("ataque " + this.jogo.getClubeComandado().getAtaque().get(x).getNome());
+                }
+                for (int x = 0; x < this.jogo.getClubeComandado().getDefesa().size(); x++) {
+                    System.out.println("defesa " + this.jogo.getClubeComandado().getDefesa().get(x).getNome());
+                }
+                mostrarMenuPrincipal();
                 return true;
             } else {
                 System.out.println("Jogador não encontrado!!! Digite Novamente: ");

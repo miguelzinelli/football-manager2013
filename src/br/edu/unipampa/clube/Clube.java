@@ -1,5 +1,6 @@
 package br.edu.unipampa.clube;
 
+import br.edu.unipampa.jogador.CaracteristicaJogador;
 import br.edu.unipampa.jogador.Jogador;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -107,11 +108,14 @@ public class Clube implements Serializable {
     public void setEscalacaoReserva(ArrayList<Jogador> escalacaoReserva) {
         this.escalacaoReserva = escalacaoReserva;
     }
-    
-    public void addJogadorDefesa(Jogador jogador){
-        this.defesa.add(jogador);
+
+    public void addJogador(Jogador jogador) {
+        if (jogador.getCaracteristica() == CaracteristicaJogador.DEFESA) {
+            this.defesa.add(jogador);
+        } else {
+            this.ataque.add(jogador);
+        }
         this.escalacaoReserva.add(jogador);
         this.financas -= jogador.getValor();
-       
     }
 }

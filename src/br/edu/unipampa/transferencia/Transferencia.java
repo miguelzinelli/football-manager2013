@@ -14,12 +14,12 @@ import java.util.ArrayList;
  */
 public class Transferencia {
     
-    private ArrayList<Jogador> jogadoresAVendaAtaque;
-    private ArrayList<Jogador> jogadoresAVendaDefesa;
+    private ArrayList<Jogador> jogadoresAVenda;
     
     public boolean comprarJogador(Clube clube, Jogador jogador){
         if (clube.getFinancas() >= jogador.getValor()) {
-            clube.addJogadorDefesa(jogador);
+            clube.addJogador(jogador);
+            this.jogadoresAVenda.remove(jogador);
             return true;
         } else {
             return false;   
@@ -31,31 +31,16 @@ public class Transferencia {
     }
 
     /**
-     * @return the jogadoresAVendaAtaque
+     * @return the jogadoresAVenda
      */
-    public ArrayList<Jogador> getJogadoresAVendaAtaque() {
-        return this.jogadoresAVendaAtaque;
+    public ArrayList<Jogador> getJogadoresAVenda() {
+        return this.jogadoresAVenda;
     }
 
     /**
-     * @param jogadoresAVendaAtaque the jogadoresAVendaAtaque to set
+     * @param jogadoresAVenda the jogadoresAVenda to set
      */
-    public void setJogadoresAVendaAtaque(ArrayList<Jogador> jogadoresAVendaAtaque) {
-        this.jogadoresAVendaAtaque = jogadoresAVendaAtaque;
-    }
-
-    /**
-     * @return the jogadoresAVendaDefesa
-     */
-    public ArrayList<Jogador> getJogadoresAVendaDefesa() {
-        return this.jogadoresAVendaDefesa;
-    }
-
-    /**
-     * @param jogadoresAVendaDefesa the jogadoresAVendaDefesa to set
-     */
-    public void setJogadoresAVendaDefesa(ArrayList<Jogador> jogadoresAVendaDefesa) {
-        this.jogadoresAVendaDefesa = jogadoresAVendaDefesa;
-    }
-    
+    public void setJogadoresAVenda(ArrayList<Jogador> jogadoresAVenda) {
+        this.jogadoresAVenda = jogadoresAVenda;
+    }   
 }

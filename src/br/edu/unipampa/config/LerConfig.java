@@ -12,13 +12,11 @@ import java.util.ArrayList;
 public class LerConfig {
 
     private ArrayList<Clube> clubes;
-    private ArrayList<Jogador> jogadoresAVendaAtaque;
-    private ArrayList<Jogador> jogadoresAVendaDefesa;
+    private ArrayList<Jogador> jogadoresAVenda;
 
     public LerConfig() {
         this.clubes = new ArrayList<>();
-        this.jogadoresAVendaAtaque = new ArrayList<>();
-        this.jogadoresAVendaDefesa = new ArrayList<>();
+        this.jogadoresAVenda = new ArrayList<>();
     }
 
     public void ler() throws Exception {
@@ -29,12 +27,8 @@ public class LerConfig {
             this.clubes.add((Clube) ois.readObject());
         }
 
-        for (int i = 8; i < 13; i++) {
-            this.jogadoresAVendaAtaque.add((Jogador) ois.readObject());
-        }
-
-        for (int i = 13; i < 18; i++) {
-            this.jogadoresAVendaDefesa.add((Jogador) ois.readObject());
+        for (int i = 8; i < 18; i++) {
+            this.jogadoresAVenda.add((Jogador) ois.readObject());
         }
 
         ois.close();
@@ -49,16 +43,9 @@ public class LerConfig {
     }
 
     /**
-     * @return the jogadoresAVendaAtaque
+     * @return the jogadoresAVenda
      */
-    public ArrayList<Jogador> getJogadoresAVendaAtaque() {
-        return this.jogadoresAVendaAtaque;
-    }
-
-    /**
-     * @return the jogadoresAVendaDefesa
-     */
-    public ArrayList<Jogador> getJogadoresAVendaDefesa() {
-        return this.jogadoresAVendaDefesa;
+    public ArrayList<Jogador> getJogadoresAVenda() {
+        return this.jogadoresAVenda;
     }
 }
