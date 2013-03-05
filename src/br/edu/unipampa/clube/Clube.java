@@ -111,10 +111,7 @@ public class Clube implements Serializable {
     public void addJogadorDefesa(Jogador jogador){
         this.defesa.add(jogador);
         this.escalacaoReserva.add(jogador);
-        descontaValorJogador(jogador);
-       
-    }
-    public void descontaValorJogador(Jogador jogador){
         this.financas -= jogador.getValor();
+       
     }
 }
