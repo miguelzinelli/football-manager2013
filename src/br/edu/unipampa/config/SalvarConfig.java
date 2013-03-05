@@ -25,7 +25,7 @@ public class SalvarConfig {
 
     public void criarTimesJogadores() {
         //cria times
-        Clube gremio = new Clube("Grêmio", 150.9, "Luxemburgo");
+        Clube gremio = new Clube("Grêmio", 150.0, "Luxemburgo");
         Clube juventude = new Clube("Juventude", 34.8, "Lisca");
         Clube esportivo = new Clube("Esportivo", 43.6, "Luis Carlos Wink");
         Clube ceramica = new Clube("Cerâmica", 21.3, "Guilherme Macuglia");
