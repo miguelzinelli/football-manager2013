@@ -116,12 +116,12 @@ public class EntradaSaida {
 
     private void executarAcaoEscolhidaMenuPrincipal(String escolha) {
         if (escolha.equals("4")) {
+            System.out.println("\nSaldo disponível na conta do clube: " + this.jogo.getClubeComandado().getFinancas());
             escolha = mostrarMenuCompraVendeJogador();
             if (escolha.equals("1")) {
                 if (this.transferencia.getJogadoresAVenda().isEmpty()) {
                     System.out.println("\nNenhum jogador disponível para compra.");
                 } else {
-                    System.out.println("\nSaldo disponível na conta do clube: " + this.jogo.getClubeComandado().getFinancas());
                     System.out.println("\nJogadores disponíveis para compra:");
                     for (int i = 0; i < this.transferencia.getJogadoresAVenda().size(); i++) {
                         System.out.println("  '" + (i + 1) + "' " + this.transferencia.getJogadoresAVenda().get(i).getNome()
@@ -138,7 +138,6 @@ public class EntradaSaida {
                 if (this.jogo.getClubeComandado().getJogadores().isEmpty()) {
                     System.out.println("\nNenhum jogador disponível para venda.");
                 } else {
-                    System.out.println("\nSaldo disponível na conta do clube: " + this.jogo.getClubeComandado().getFinancas());
                     System.out.println("\nJogadores disponíveis para venda:");
                     int i;
                     for (i = 0; i < this.jogo.getClubeComandado().getJogadores().size(); i++) {
@@ -158,7 +157,7 @@ public class EntradaSaida {
     }
 
     private String mostrarMenuCompraVendeJogador() {
-        System.out.println("O que você deseja fazer:\n --> '1' - Comprar\n --> '2' - Vender");
+        System.out.println("\nO que você deseja fazer:\n --> '1' - Comprar\n --> '2' - Vender");
         escolhaString = teclado.next();
         if (this.escolhaString.equals("1") || (this.escolhaString.equals("2"))) {
             return escolhaString;
@@ -195,9 +194,6 @@ public class EntradaSaida {
                                 + this.transferencia.getJogadoresAVenda().get(escolhaInt - 1).getNome() + "\n");
                     }
                 }
-                for (int x = 0; x < this.jogo.getClubeComandado().getJogadores().size(); x++) {
-                    System.out.println("ataque " + this.jogo.getClubeComandado().getJogadores().get(x).getNome());
-                }
                 mostrarMenuPrincipal();
                 return true;
             } else {
@@ -221,10 +217,9 @@ public class EntradaSaida {
             return venderJogador();
         } else {
             if (this.escolhaInt >= 0 && this.escolhaInt <= this.jogo.getClubeComandado().getJogadores().size()) {
-                Clube clubeInteressado = sortearClubeInteressadoComprarJogador();
                 if (this.escolhaInt != 0) {
                     String nomeJogador = this.jogo.getClubeComandado().getJogadores().get(escolhaInt - 1).getNome();
-                    
+                    Clube clubeInteressado = sortearClubeInteressadoComprarJogador();
                     if (this.transferencia.venderJogador(this.jogo.getClubeComandado(),
                             this.jogo.getClubeComandado().getJogadores().get(escolhaInt - 1), clubeInteressado)) {
                         System.out.println("\nParabéns!! Você fez um excelente negócio ao vender o jogador "
@@ -238,12 +233,6 @@ public class EntradaSaida {
                         System.out.println("\nNenhum clube interessado ou com recursos financeiros para comprar o jogador "
                                 + nomeJogador + "\n");
                     }
-                }
-                for (int x = 0; x < this.jogo.getClubeComandado().getJogadores().size(); x++) {
-                    System.out.println("ataque " + this.jogo.getClubeComandado().getJogadores().get(x).getNome());
-                }
-                for (int x = 0; x < clubeInteressado.getJogadores().size(); x++) {
-                    System.out.println("interesse " + clubeInteressado.getJogadores().get(x).getNome());
                 }
                 mostrarMenuPrincipal();
                 return true;
