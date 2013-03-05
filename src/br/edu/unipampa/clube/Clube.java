@@ -109,7 +109,17 @@ public class Clube implements Serializable {
         this.escalacaoReserva = escalacaoReserva;
     }
 
-    public void addJogador(Jogador jogador) {
+    public void comprarJogador(Jogador jogador) {
+        if (jogador.getCaracteristica() == CaracteristicaJogador.DEFESA) {
+            this.defesa.add(jogador);
+        } else {
+            this.ataque.add(jogador);
+        }
+        this.escalacaoReserva.add(jogador);
+        this.financas -= jogador.getValor();
+    }
+    
+    public void venderJogador(Jogador jogador){
         if (jogador.getCaracteristica() == CaracteristicaJogador.DEFESA) {
             this.defesa.add(jogador);
         } else {

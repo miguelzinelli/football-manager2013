@@ -18,7 +18,7 @@ public class Transferencia {
     
     public boolean comprarJogador(Clube clube, Jogador jogador){
         if (clube.getFinancas() >= jogador.getValor()) {
-            clube.addJogador(jogador);
+            clube.comprarJogador(jogador);
             this.jogadoresAVenda.remove(jogador);
             return true;
         } else {
@@ -26,8 +26,9 @@ public class Transferencia {
         }        
     }
     
-    public void venderJogador(){
+    public boolean venderJogador(Clube clubeVendedor, Jogador jogador, ArrayList<Clube> clubesInteressados){
         
+        return false;
     }
 
     /**

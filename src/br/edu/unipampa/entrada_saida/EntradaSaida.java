@@ -166,16 +166,17 @@ public class EntradaSaida {
         } else {
             if (this.escolhaInt >= 0 && this.escolhaInt <= numeroJogadoresAVenda) {
                 if (this.escolhaInt != 0) {
+                    String nomeJogador = this.transferencia.getJogadoresAVenda().get(escolhaInt - 1).getNome();
                     if (this.transferencia.comprarJogador(this.jogo.getClubeComandado(),
                             this.transferencia.getJogadoresAVenda().get(escolhaInt - 1))) {
                         System.out.println("\nParabéns!! Você fez um excelente negócio ao contratar o jogador "
-                                + this.transferencia.getJogadoresAVenda().get(escolhaInt - 1).getNome()
+                                + nomeJogador
                                 + ", e ele já está integrado ao seu plantel.\n"
                                 + "O valor em caixa do clube está em: "
                                 + this.jogo.getClubeComandado().getFinancas() + "\n");
                     } else {
                         System.out.println("\nVocê não possui dinheiro para compra o jogador "
-                                + this.transferencia.getJogadoresAVenda().get(escolhaInt - 1).getNome() + "\n");
+                                + nomeJogador + "\n");
                     }
                 }
                 for (int x = 0; x < this.jogo.getClubeComandado().getAtaque().size(); x++) {
