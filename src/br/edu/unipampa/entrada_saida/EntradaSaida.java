@@ -82,6 +82,7 @@ public class EntradaSaida {
         this.campeonato.setClubeComandado(clubeComandado);
         this.campeonato.setClubes(clubes);
         this.campeonato.getClubeComandado().setTimeEscalado(false);
+        this.campeonato.montarCampeonato();
 
         System.out.println("\nOlá " + this.campeonato.getClubeComandado().getTecnico() + ", seja bem vindo ao "
                 + this.campeonato.getClubeComandado().getNome() + "!\n"

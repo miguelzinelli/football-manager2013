@@ -10,15 +10,14 @@ import java.util.ArrayList;
 public class Campeonato {
 
     private Clube clubeComandado;
-    private ArrayList<Clube> clubes;    
+    private ArrayList<Clube> clubes;
     protected int numeroPartidas;
-    private ArrayList<Partida> partidas;
+    private Partida[][] partidas;
     private int rodadaAtual;
 
     public Campeonato() {
-        this.partidas = new ArrayList<>();
         this.rodadaAtual = 1;
-        montarCampeonato();
+        this.partidas = new Partida[7][4];
     }
 
     /**
@@ -51,10 +50,67 @@ public class Campeonato {
     }
 
     public String proximoConfronto() {
-        return this.getClubeComandado().getNome() + " x " + this.getClubes().get(this.numeroPartidas - 1).getNome();
+        return this.partidas[this.rodadaAtual - 1][0].getClubeMandante().getNome()
+                + " x "
+                + this.partidas[this.rodadaAtual - 1][0].getClubeVisitante().getNome();
     }
-    
-    private void montarCampeonato(){
 
+    public void montarCampeonato() {
+        //primeira rodada
+        this.partidas[0][0] = new Partida(this.clubeComandado, this.clubes.get(0));
+        this.partidas[0][1] = new Partida(this.clubes.get(1), this.clubes.get(2));
+        this.partidas[0][2] = new Partida(this.clubes.get(2), this.clubes.get(2));
+        this.partidas[0][3] = new Partida(this.clubes.get(2), this.clubes.get(2));
+
+        //segunda rodada
+        this.partidas[1][0] = new Partida(this.clubeComandado, this.clubes.get(1));
+        this.partidas[1][1] = new Partida(this.clubes.get(2), this.clubes.get(2));
+        this.partidas[1][2] = new Partida(this.clubes.get(2), this.clubes.get(2));
+        this.partidas[1][3] = new Partida(this.clubes.get(2), this.clubes.get(2));
+
+        //terceira rodada
+        this.partidas[2][0] = new Partida(this.clubeComandado, this.clubes.get(2));
+        this.partidas[2][1] = new Partida(this.clubes.get(2), this.clubes.get(2));
+        this.partidas[2][2] = new Partida(this.clubes.get(2), this.clubes.get(2));
+        this.partidas[2][3] = new Partida(this.clubes.get(2), this.clubes.get(2));
+
+        //quarta rodada
+        this.partidas[3][0] = new Partida(this.clubeComandado, this.clubes.get(3));
+        this.partidas[3][1] = new Partida(this.clubes.get(2), this.clubes.get(2));
+        this.partidas[3][2] = new Partida(this.clubes.get(2), this.clubes.get(2));
+        this.partidas[3][3] = new Partida(this.clubes.get(2), this.clubes.get(2));
+
+        //quinta rodada
+        this.partidas[4][0] = new Partida(this.clubeComandado, this.clubes.get(4));
+        this.partidas[4][1] = new Partida(this.clubes.get(2), this.clubes.get(2));
+        this.partidas[4][2] = new Partida(this.clubes.get(2), this.clubes.get(2));
+        this.partidas[4][3] = new Partida(this.clubes.get(2), this.clubes.get(2));
+
+        //sexta rodada
+        this.partidas[5][0] = new Partida(this.clubeComandado, this.clubes.get(5));
+        this.partidas[5][1] = new Partida(this.clubes.get(2), this.clubes.get(2));
+        this.partidas[5][2] = new Partida(this.clubes.get(2), this.clubes.get(2));
+        this.partidas[5][3] = new Partida(this.clubes.get(2), this.clubes.get(2));
+
+        //setima rodada
+        this.partidas[6][0] = new Partida(this.clubeComandado, this.clubes.get(6));
+        this.partidas[6][1] = new Partida(this.clubes.get(2), this.clubes.get(2));
+        this.partidas[6][2] = new Partida(this.clubes.get(2), this.clubes.get(2));
+        this.partidas[6][3] = new Partida(this.clubes.get(2), this.clubes.get(2));
+        
+        imprimirJogos();
+    }
+
+    public void imprimirJogos() {
+        System.out.println("");
+        for (int i = 0; i < this.partidas.length; i++) {
+            System.out.println("rodada: " + (i + 1));
+            for (int j = 0; j < 4; j++) {
+                System.out.println("" + this.partidas[i][j].getClubeMandante().getNome()
+                        + " x "
+                        + this.partidas[i][j].getClubeVisitante().getNome());
+            }
+        }
+        System.out.println("");
     }
 }

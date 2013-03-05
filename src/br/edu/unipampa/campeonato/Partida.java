@@ -30,4 +30,18 @@ public class Partida {
 
     public void substituicao() {
     }
+
+    /**
+     * @return the clubeMandante
+     */
+    public Clube getClubeMandante() {
+        return clubeMandante;
+    }
+
+    /**
+     * @return the clubeVisitante
+     */
+    public Clube getClubeVisitante() {
+        return clubeVisitante;
+    }
 }
