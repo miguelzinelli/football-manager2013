@@ -1,6 +1,5 @@
 package br.edu.unipampa.clube;
 
-import br.edu.unipampa.jogador.CaracteristicaJogador;
 import br.edu.unipampa.jogador.Jogador;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -17,11 +16,13 @@ public class Clube implements Serializable {
     private ArrayList<Jogador> jogadores;
     private ArrayList<Jogador> escalacaoTitular;
     private ArrayList<Jogador> escalacaoReserva;
+    private boolean timeEscalado;
 
     public Clube(String nome, double financas, String tecnico) {
         this.nome = nome;
         this.financas = financas;
         this.tecnico = tecnico;
+        this.timeEscalado = false;
     }
 
     /**
@@ -70,7 +71,7 @@ public class Clube implements Serializable {
      * @return the escalacaoTitular
      */
     public ArrayList<Jogador> getEscalacaoTitular() {
-        return escalacaoTitular;
+        return this.escalacaoTitular;
     }
 
     /**
@@ -78,13 +79,14 @@ public class Clube implements Serializable {
      */
     public void setEscalacaoTitular(ArrayList<Jogador> escalacaoTitular) {
         this.escalacaoTitular = escalacaoTitular;
+        this.setTimeEscalado(true);
     }
 
     /**
      * @return the escalacaoReserva
      */
     public ArrayList<Jogador> getEscalacaoReserva() {
-        return escalacaoReserva;
+        return this.escalacaoReserva;
     }
 
     /**
@@ -106,5 +108,19 @@ public class Clube implements Serializable {
             this.escalacaoTitular.remove(jogador);
         }
         this.financas += jogador.getValor();
+    }
+
+    /**
+     * @return the timeEscalado
+     */
+    public boolean isTimeEscalado() {
+        return this.timeEscalado;
+    }
+
+    /**
+     * @param timeEscalado the timeEscalado to set
+     */
+    public void setTimeEscalado(boolean timeEscalado) {
+        this.timeEscalado = timeEscalado;
     }
 }

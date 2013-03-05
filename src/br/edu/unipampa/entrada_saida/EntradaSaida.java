@@ -81,6 +81,7 @@ public class EntradaSaida {
     private void iniciarCampeonato(Clube clubeComandado, ArrayList<Clube> clubes) {
         this.campeonato.setClubeComandado(clubeComandado);
         this.campeonato.setClubes(clubes);
+        this.campeonato.getClubeComandado().setTimeEscalado(false);
 
         System.out.println("\nOlá " + this.campeonato.getClubeComandado().getTecnico() + ", seja bem vindo ao "
                 + this.campeonato.getClubeComandado().getNome() + "!\n"
@@ -115,43 +116,51 @@ public class EntradaSaida {
     }
 
     private void executarAcaoEscolhidaMenuPrincipal(String escolha) {
-        if (escolha.equals("4")) {
-            System.out.println("\nSaldo disponível na conta do clube: " + this.campeonato.getClubeComandado().getFinancas());
-            escolha = mostrarMenuCompraVendeJogador();
-            if (escolha.equals("1")) {
-                if (this.transferencia.getJogadoresAVenda().isEmpty()) {
-                    System.out.println("\nNenhum jogador disponível para compra.");
-                } else {
-                    System.out.println("\nJogadores disponíveis para compra:");
-                    for (int i = 0; i < this.transferencia.getJogadoresAVenda().size(); i++) {
-                        System.out.println("  '" + (i + 1) + "' " + this.transferencia.getJogadoresAVenda().get(i).getNome()
-                                + " - Força: " + this.transferencia.getJogadoresAVenda().get(i).getForca()
-                                + " - Idade: " + this.transferencia.getJogadoresAVenda().get(i).getIdade()
-                                + " - Nacionalidade: " + this.transferencia.getJogadoresAVenda().get(i).getNacionalidade()
-                                + " - Posição: " + this.transferencia.getJogadoresAVenda().get(i).getPosicao()
-                                + " - Característica: " + this.transferencia.getJogadoresAVenda().get(i).getCaracteristica()
-                                + " - Valor: " + this.transferencia.getJogadoresAVenda().get(i).getValor());
-                    }
-                    comprarJogador();
-                }
+        if (escolha.equals("1")) {
+            escalarTime();
+        } else {
+            if (escolha.equals("2")) {
+                //
             } else {
-                if (this.campeonato.getClubeComandado().getJogadores().isEmpty()) {
-                    System.out.println("\nNenhum jogador disponível para venda.");
-                } else {
-                    System.out.println("\nJogadores disponíveis para venda:");
-                    int i;
-                    for (i = 0; i < this.campeonato.getClubeComandado().getJogadores().size(); i++) {
-                        System.out.println("  '" + (i + 1) + "' " + this.campeonato.getClubeComandado().getJogadores().get(i).getNome()
-                                + " - Força: " + this.campeonato.getClubeComandado().getJogadores().get(i).getForca()
-                                + " - Idade: " + this.campeonato.getClubeComandado().getJogadores().get(i).getIdade()
-                                + " - Nacionalidade: " + this.campeonato.getClubeComandado().getJogadores().get(i).getNacionalidade()
-                                + " - Posição: " + this.campeonato.getClubeComandado().getJogadores().get(i).getPosicao()
-                                + " - Característica: " + this.campeonato.getClubeComandado().getJogadores().get(i).getCaracteristica()
-                                + " - Valor: " + this.campeonato.getClubeComandado().getJogadores().get(i).getValor());
+                if (escolha.equals("3")) {
+                    if (!this.campeonato.getClubeComandado().isTimeEscalado()) {
+                        System.out.println("\nTime não escalado para essa partida.\n");
+                        mostrarMenuPrincipal();
+                    } else{
+                        //
                     }
-                    venderJogador();
+                } else {
+                    if (escolha.equals("4")) {
+                        System.out.println("\nSaldo disponível na conta do clube: " + this.campeonato.getClubeComandado().getFinancas());
+                        escolha = mostrarMenuCompraVendeJogador();
+                        if (escolha.equals("1")) {
+                            if (this.transferencia.getJogadoresAVenda().isEmpty()) {
+                                System.out.println("\nNenhum jogador disponível para compra.");
+                            } else {
+                                System.out.println("\nJogadores disponíveis para compra:");
+                                for (int i = 0; i < this.transferencia.getJogadoresAVenda().size(); i++) {
+                                    System.out.println("  '" + (i + 1) + "' " + this.transferencia.getJogadoresAVenda().get(i).getNome()
+                                            + " - Força: " + this.transferencia.getJogadoresAVenda().get(i).getForca()
+                                            + " - Idade: " + this.transferencia.getJogadoresAVenda().get(i).getIdade()
+                                            + " - Nacionalidade: " + this.transferencia.getJogadoresAVenda().get(i).getNacionalidade()
+                                            + " - Posição: " + this.transferencia.getJogadoresAVenda().get(i).getPosicao()
+                                            + " - Característica: " + this.transferencia.getJogadoresAVenda().get(i).getCaracteristica()
+                                            + " - Valor: " + this.transferencia.getJogadoresAVenda().get(i).getValor());
+                                }
+                                comprarJogador();
+                            }
+                        } else {
+                            if (this.campeonato.getClubeComandado().getJogadores().isEmpty()) {
+                                System.out.println("\nNenhum jogador disponível para venda.");
+                            } else {
+                                System.out.println("\nJogadores disponíveis para venda:");
+                                mostrarJogadoresClubeComandado();
+                                venderJogador();
+                            }
+
+                        }
+                    }
                 }
-                
             }
         }
     }
@@ -249,15 +258,90 @@ public class EntradaSaida {
         return this.campeonato.getClubes().get(sortear);
     }
 
-    private void escalarTime() {
-        System.out.println("******** Definir Escalação ********");
-        System.out.println("*****Escolha os jogadores para respectiva posição entre os titulares: ");
-        escolhaInt = teclado.nextInt();
+    private void mostrarJogadoresClubeComandado() {
+        for (int i = 0; i < this.campeonato.getClubeComandado().getJogadores().size(); i++) {
+            System.out.println("  '" + (i + 1) + "' " + this.campeonato.getClubeComandado().getJogadores().get(i).getNome()
+                    + " - Força: " + this.campeonato.getClubeComandado().getJogadores().get(i).getForca()
+                    + " - Idade: " + this.campeonato.getClubeComandado().getJogadores().get(i).getIdade()
+                    + " - Nacionalidade: " + this.campeonato.getClubeComandado().getJogadores().get(i).getNacionalidade()
+                    + " - Posição: " + this.campeonato.getClubeComandado().getJogadores().get(i).getPosicao()
+                    + " - Característica: " + this.campeonato.getClubeComandado().getJogadores().get(i).getCaracteristica()
+                    + " - Valor: " + this.campeonato.getClubeComandado().getJogadores().get(i).getValor());
+        }
+    }
 
+    private boolean escalarTime() {
+        System.out.println("\n******** Definir Escalação ********");
+        System.out.println("\nJogadores Disponíveis para partida:");
+        mostrarJogadoresClubeComandado();
+        System.out.println("\nEscolha 11 jogadores titular. Digite ZERO caso deseja sair da escalação.");
+        ArrayList<Jogador> titular = new ArrayList<>();
+        for (int i = 0; i < 11; i++) {
+            System.out.println("\nDigite o Código do " + (i + 1) + " jogador:");
+            this.escolhaInt = receberNumeroJogadorEscalacao();
+            if (this.escolhaInt != 0) {
+                if (!titular.contains(this.campeonato.getClubeComandado().getJogadores().get(this.escolhaInt - 1))) {
+                    titular.add(this.campeonato.getClubeComandado().getJogadores().get(this.escolhaInt - 1));
+                } else {
+                    System.out.println("Jogador já escalado. Escolhe outro jogador:");
+                    i--;
+                }
+            } else {
+                mostrarMenuPrincipal();
+                break;
+            }
+        }
+
+        this.campeonato.getClubeComandado().setEscalacaoTitular(titular);
+
+        System.out.println("\nEscolha até 4 jogadores reservas. Digite ZERO caso deseja sair da escalação.");
+        ArrayList<Jogador> reservas = new ArrayList<>();
+        for (int i = 0; i < 4; i++) {
+            System.out.println("\nDigite o Código do " + (i + 1) + " jogador:");
+            this.escolhaInt = receberNumeroJogadorEscalacao();
+            if (this.escolhaInt != 0) {
+                if (titular.contains(this.campeonato.getClubeComandado().getJogadores().get(this.escolhaInt - 1))) {
+                    System.out.println("Jogador já escalado no time titular. Escolhe outro jogador:");
+                    i--;
+                } else {
+                    if (!reservas.contains(this.campeonato.getClubeComandado().getJogadores().get(this.escolhaInt - 1))) {
+                        reservas.add(this.campeonato.getClubeComandado().getJogadores().get(this.escolhaInt - 1));
+                        this.campeonato.getClubeComandado().setEscalacaoReserva(reservas);
+                    } else {
+                        System.out.println("Jogador já escalado na reserva. Escolhe outro jogador:");
+                        i--;
+                    }
+                }
+            } else {
+                mostrarMenuPrincipal();
+                break;
+            }
+        }
+        return true;
+    }
+
+    public int receberNumeroJogadorEscalacao() {
+        boolean caracterInvalido = false;
+        try {
+            this.escolhaInt = Integer.parseInt(teclado.next());
+        } catch (NumberFormatException e) {
+            caracterInvalido = true;
+        }
+
+        if (caracterInvalido) {
+            System.out.println("\nCaracter Inválido!!! Digite Novamente: ");
+            return receberNumeroJogadorEscalacao();
+        } else {
+            if (this.escolhaInt < 0 && this.escolhaInt > this.campeonato.getClubeComandado().getJogadores().size()) {
+                System.out.println("Jogador não encontrado. Digite novamente:");
+                return receberNumeroJogadorEscalacao();
+            } else {
+                return this.escolhaInt;
+            }
+        }
     }
 
     private void definirFormacao(ArrayList escolhidos, Jogador jogadorEscolhido) {
-
 //        for (int i = 0; i < this.jogo.getClubeComandado().getAtaque().size(); i++) {
 //
 //            if (this.jogo.getClubeComandado().getAtaque().contains(jogadorEscolhido)) {
@@ -265,7 +349,6 @@ public class EntradaSaida {
 //
 //            }
 //        }
-
     }
 
     /**

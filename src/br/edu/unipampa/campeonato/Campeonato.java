@@ -8,14 +8,17 @@ import java.util.ArrayList;
  * @author Alex
  */
 public class Campeonato {
-    
-    private ArrayList<Clube> clubes;
+
     private Clube clubeComandado;
+    private ArrayList<Clube> clubes;    
     protected int numeroPartidas;
-    private ArrayList<Tabela> tabela;
-    
-    public Campeonato(){
-        tabela = new ArrayList<>();
+    private ArrayList<Partida> partidas;
+    private int rodadaAtual;
+
+    public Campeonato() {
+        this.partidas = new ArrayList<>();
+        this.rodadaAtual = 1;
+        montarCampeonato();
     }
 
     /**
@@ -46,8 +49,12 @@ public class Campeonato {
     public void setClubeComandado(Clube clubeComandado) {
         this.clubeComandado = clubeComandado;
     }
-    
+
     public String proximoConfronto() {
         return this.getClubeComandado().getNome() + " x " + this.getClubes().get(this.numeroPartidas - 1).getNome();
-    }    
+    }
+    
+    private void montarCampeonato(){
+
+    }
 }
