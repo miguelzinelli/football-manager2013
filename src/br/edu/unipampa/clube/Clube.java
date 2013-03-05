@@ -14,8 +14,7 @@ public class Clube implements Serializable {
     private String nome;
     private double financas;
     private String tecnico;
-    private ArrayList<Jogador> defesa;
-    private ArrayList<Jogador> ataque;
+    private ArrayList<Jogador> jogadores;
     private ArrayList<Jogador> escalacaoTitular;
     private ArrayList<Jogador> escalacaoReserva;
 
@@ -40,17 +39,10 @@ public class Clube implements Serializable {
     }
 
     /**
-     * @return the defesa
+     * @return the jogadores
      */
-    public ArrayList<Jogador> getDefesa() {
-        return this.defesa;
-    }
-
-    /**
-     * @return the ataque
-     */
-    public ArrayList<Jogador> getAtaque() {
-        return this.ataque;
+    public ArrayList<Jogador> getJogadores() {
+        return this.jogadores;
     }
 
     /**
@@ -68,17 +60,10 @@ public class Clube implements Serializable {
     }
 
     /**
-     * @param defesa the defesa to set
+     * @param jogadores the defesa to set
      */
-    public void setDefesa(ArrayList<Jogador> defesa) {
-        this.defesa = defesa;
-    }
-
-    /**
-     * @param ataque the ataque to set
-     */
-    public void setAtaque(ArrayList<Jogador> ataque) {
-        this.ataque = ataque;
+    public void setJogadores(ArrayList<Jogador> jogadores) {
+        this.jogadores = jogadores;
     }
 
     /**
@@ -109,23 +94,17 @@ public class Clube implements Serializable {
         this.escalacaoReserva = escalacaoReserva;
     }
 
-    public void comprarJogador(Jogador jogador) {
-        if (jogador.getCaracteristica() == CaracteristicaJogador.DEFESA) {
-            this.defesa.add(jogador);
-        } else {
-            this.ataque.add(jogador);
-        }
+    public void entraJogador(Jogador jogador) {
+        this.jogadores.add(jogador);
         this.escalacaoReserva.add(jogador);
         this.financas -= jogador.getValor();
     }
-    
-    public void venderJogador(Jogador jogador){
-        if (jogador.getCaracteristica() == CaracteristicaJogador.DEFESA) {
-            this.defesa.add(jogador);
-        } else {
-            this.ataque.add(jogador);
+
+    public void saiJogador(Jogador jogador) {
+        this.jogadores.remove(jogador);
+        if (!this.escalacaoReserva.remove(jogador)) {
+            this.escalacaoTitular.remove(jogador);
         }
-        this.escalacaoReserva.add(jogador);
-        this.financas -= jogador.getValor();
+        this.financas += jogador.getValor();
     }
 }

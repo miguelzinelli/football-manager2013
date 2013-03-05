@@ -3,10 +3,10 @@ package br.edu.unipampa.entrada_saida;
 import br.edu.unipampa.campeonato.Partida;
 import br.edu.unipampa.clube.Clube;
 import br.edu.unipampa.config.LerConfig;
-import br.edu.unipampa.config.SalvarConfig;
 import br.edu.unipampa.jogador.Jogador;
 import br.edu.unipampa.transferencia.Transferencia;
 import java.util.ArrayList;
+import java.util.Random;
 import java.util.Scanner;
 
 /**
@@ -41,7 +41,7 @@ public class EntradaSaida {
         iniciarCampeonato(timeComandado, this.lerConfig.getClubes());
     }
 
-    public String informarNomeTreinador() {
+    private String informarNomeTreinador() {
         System.out.println("Digite seu nome:");
 
         this.escolhaString = teclado.nextLine();
@@ -123,8 +123,7 @@ public class EntradaSaida {
                 } else {
                     System.out.println("\nSaldo disponível na conta do clube: " + this.jogo.getClubeComandado().getFinancas());
                     System.out.println("\nJogadores disponíveis para compra:");
-                    int i;
-                    for (i = 0; i < this.transferencia.getJogadoresAVenda().size(); i++) {
+                    for (int i = 0; i < this.transferencia.getJogadoresAVenda().size(); i++) {
                         System.out.println("  '" + (i + 1) + "' " + this.transferencia.getJogadoresAVenda().get(i).getNome()
                                 + " - Força: " + this.transferencia.getJogadoresAVenda().get(i).getForca()
                                 + " - Idade: " + this.transferencia.getJogadoresAVenda().get(i).getIdade()
@@ -133,9 +132,27 @@ public class EntradaSaida {
                                 + " - Característica: " + this.transferencia.getJogadoresAVenda().get(i).getCaracteristica()
                                 + " - Valor: " + this.transferencia.getJogadoresAVenda().get(i).getValor());
                     }
-                    comprarJogador(i);
+                    comprarJogador();
                 }
             } else {
+                if (this.jogo.getClubeComandado().getJogadores().isEmpty()) {
+                    System.out.println("\nNenhum jogador disponível para venda.");
+                } else {
+                    System.out.println("\nSaldo disponível na conta do clube: " + this.jogo.getClubeComandado().getFinancas());
+                    System.out.println("\nJogadores disponíveis para venda:");
+                    int i;
+                    for (i = 0; i < this.jogo.getClubeComandado().getJogadores().size(); i++) {
+                        System.out.println("  '" + (i + 1) + "' " + this.jogo.getClubeComandado().getJogadores().get(i).getNome()
+                                + " - Força: " + this.jogo.getClubeComandado().getJogadores().get(i).getForca()
+                                + " - Idade: " + this.jogo.getClubeComandado().getJogadores().get(i).getIdade()
+                                + " - Nacionalidade: " + this.jogo.getClubeComandado().getJogadores().get(i).getNacionalidade()
+                                + " - Posição: " + this.jogo.getClubeComandado().getJogadores().get(i).getPosicao()
+                                + " - Característica: " + this.jogo.getClubeComandado().getJogadores().get(i).getCaracteristica()
+                                + " - Valor: " + this.jogo.getClubeComandado().getJogadores().get(i).getValor());
+                    }
+                    venderJogador();
+                }
+                
             }
         }
     }
@@ -151,7 +168,7 @@ public class EntradaSaida {
         }
     }
 
-    public boolean comprarJogador(int numeroJogadoresAVenda) {
+    private boolean comprarJogador() {
         System.out.println("Digite o número do jogador que deseja comprar. Digite ZERO para cancelar compra:");
         boolean caracterInvalido = false;
         try {
@@ -162,46 +179,88 @@ public class EntradaSaida {
 
         if (caracterInvalido) {
             System.out.println("\nCaracter Inválido!!! Digite Novamente: ");
-            return comprarJogador(numeroJogadoresAVenda);
+            return comprarJogador();
         } else {
-            if (this.escolhaInt >= 0 && this.escolhaInt <= numeroJogadoresAVenda) {
+            if (this.escolhaInt >= 0 && this.escolhaInt <= this.transferencia.getJogadoresAVenda().size()) {
                 if (this.escolhaInt != 0) {
-                    String nomeJogador = this.transferencia.getJogadoresAVenda().get(escolhaInt - 1).getNome();
                     if (this.transferencia.comprarJogador(this.jogo.getClubeComandado(),
                             this.transferencia.getJogadoresAVenda().get(escolhaInt - 1))) {
                         System.out.println("\nParabéns!! Você fez um excelente negócio ao contratar o jogador "
-                                + nomeJogador
+                                + this.jogo.getClubeComandado().getJogadores().get(this.jogo.getClubeComandado().getJogadores().size() - 1)
                                 + ", e ele já está integrado ao seu plantel.\n"
                                 + "O valor em caixa do clube está em: "
                                 + this.jogo.getClubeComandado().getFinancas() + "\n");
                     } else {
                         System.out.println("\nVocê não possui dinheiro para compra o jogador "
-                                + nomeJogador + "\n");
+                                + this.transferencia.getJogadoresAVenda().get(escolhaInt - 1).getNome() + "\n");
                     }
                 }
-                for (int x = 0; x < this.jogo.getClubeComandado().getAtaque().size(); x++) {
-                    System.out.println("ataque " + this.jogo.getClubeComandado().getAtaque().get(x).getNome());
-                }
-                for (int x = 0; x < this.jogo.getClubeComandado().getDefesa().size(); x++) {
-                    System.out.println("defesa " + this.jogo.getClubeComandado().getDefesa().get(x).getNome());
+                for (int x = 0; x < this.jogo.getClubeComandado().getJogadores().size(); x++) {
+                    System.out.println("ataque " + this.jogo.getClubeComandado().getJogadores().get(x).getNome());
                 }
                 mostrarMenuPrincipal();
                 return true;
             } else {
                 System.out.println("Jogador não encontrado!!! Digite Novamente: ");
-                return comprarJogador(numeroJogadoresAVenda);
+                return comprarJogador();
             }
         }
     }
 
-    /**
-     * @return the leConfig
-     */
-    public LerConfig getLeConfig() {
-        return this.lerConfig;
+    private boolean venderJogador() {
+        System.out.println("Digite o número do jogador que deseja vender. Digite ZERO para cancelar venda:");
+        boolean caracterInvalido = false;
+        try {
+            this.escolhaInt = Integer.parseInt(teclado.next());
+        } catch (NumberFormatException e) {
+            caracterInvalido = true;
+        }
+
+        if (caracterInvalido) {
+            System.out.println("\nCaracter Inválido!!! Digite Novamente: ");
+            return venderJogador();
+        } else {
+            if (this.escolhaInt >= 0 && this.escolhaInt <= this.jogo.getClubeComandado().getJogadores().size()) {
+                Clube clubeInteressado = sortearClubeInteressadoComprarJogador();
+                if (this.escolhaInt != 0) {
+                    String nomeJogador = this.jogo.getClubeComandado().getJogadores().get(escolhaInt - 1).getNome();
+                    
+                    if (this.transferencia.venderJogador(this.jogo.getClubeComandado(),
+                            this.jogo.getClubeComandado().getJogadores().get(escolhaInt - 1), clubeInteressado)) {
+                        System.out.println("\nParabéns!! Você fez um excelente negócio ao vender o jogador "
+                                + nomeJogador
+                                + ", para o clube "
+                                + clubeInteressado.getNome()
+                                + " e ele não faz mais parte do seu plantel.\n"
+                                + "O valor em caixa do clube está em: "
+                                + this.jogo.getClubeComandado().getFinancas() + "\n");
+                    } else {
+                        System.out.println("\nNenhum clube interessado ou com recursos financeiros para comprar o jogador "
+                                + nomeJogador + "\n");
+                    }
+                }
+                for (int x = 0; x < this.jogo.getClubeComandado().getJogadores().size(); x++) {
+                    System.out.println("ataque " + this.jogo.getClubeComandado().getJogadores().get(x).getNome());
+                }
+                for (int x = 0; x < clubeInteressado.getJogadores().size(); x++) {
+                    System.out.println("interesse " + clubeInteressado.getJogadores().get(x).getNome());
+                }
+                mostrarMenuPrincipal();
+                return true;
+            } else {
+                System.out.println("Jogador não encontrado!!! Digite Novamente: ");
+                return venderJogador();
+            }
+        }
     }
 
-    public void escalarTime() {
+    private Clube sortearClubeInteressadoComprarJogador() {
+        Random k = new Random();
+        int sortear = k.nextInt(this.jogo.getClubes().size() - 1);
+        return this.jogo.getClubes().get(sortear);
+    }
+
+    private void escalarTime() {
         System.out.println("******** Definir Escalação ********");
         System.out.println("*****Escolha os jogadores para respectiva posição entre os titulares: ");
         escolhaInt = teclado.nextInt();
@@ -210,13 +269,20 @@ public class EntradaSaida {
 
     private void definirFormacao(ArrayList escolhidos, Jogador jogadorEscolhido) {
 
-        for (int i = 0; i < this.jogo.getClubeComandado().getAtaque().size(); i++) {
+//        for (int i = 0; i < this.jogo.getClubeComandado().getAtaque().size(); i++) {
+//
+//            if (this.jogo.getClubeComandado().getAtaque().contains(jogadorEscolhido)) {
+//                escolhidos.add(jogadorEscolhido);
+//
+//            }
+//        }
 
-            if (this.jogo.getClubeComandado().getAtaque().contains(jogadorEscolhido)) {
-                escolhidos.add(jogadorEscolhido);
+    }
 
-            }
-        }
-
+    /**
+     * @return the leConfig
+     */
+    public LerConfig getLeConfig() {
+        return this.lerConfig;
     }
 }

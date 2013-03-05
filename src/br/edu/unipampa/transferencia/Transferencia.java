@@ -13,22 +13,27 @@ import java.util.ArrayList;
  * @author Miguel
  */
 public class Transferencia {
-    
+
     private ArrayList<Jogador> jogadoresAVenda;
-    
-    public boolean comprarJogador(Clube clube, Jogador jogador){
+
+    public boolean comprarJogador(Clube clube, Jogador jogador) {
         if (clube.getFinancas() >= jogador.getValor()) {
-            clube.comprarJogador(jogador);
+            clube.entraJogador(jogador);
             this.jogadoresAVenda.remove(jogador);
             return true;
         } else {
-            return false;   
-        }        
+            return false;
+        }
     }
-    
-    public boolean venderJogador(Clube clubeVendedor, Jogador jogador, ArrayList<Clube> clubesInteressados){
-        
-        return false;
+
+    public boolean venderJogador(Clube clubeVendedor, Jogador jogador, Clube clubeInteressado) {
+        if (clubeInteressado.getFinancas() >= jogador.getValor()) {
+            clubeInteressado.entraJogador(jogador);
+            clubeVendedor.saiJogador(jogador);
+            return true;
+        } else {
+            return false;
+        }
     }
 
     /**
@@ -43,5 +48,5 @@ public class Transferencia {
      */
     public void setJogadoresAVenda(ArrayList<Jogador> jogadoresAVenda) {
         this.jogadoresAVenda = jogadoresAVenda;
-    }   
+    }
 }
