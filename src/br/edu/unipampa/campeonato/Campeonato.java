@@ -57,46 +57,46 @@ public class Campeonato {
 
     public void montarCampeonato() {
         //primeira rodada
-        this.partidas[0][0] = new Partida(this.clubeComandado, this.clubes.get(0));
-        this.partidas[0][1] = new Partida(this.clubes.get(1), this.clubes.get(2));
-        this.partidas[0][2] = new Partida(this.clubes.get(2), this.clubes.get(2));
-        this.partidas[0][3] = new Partida(this.clubes.get(2), this.clubes.get(2));
+        this.partidas[0][0] = new Partida(this.clubeComandado, this.clubes.get(5));
+        this.partidas[0][1] = new Partida(this.clubes.get(2), this.clubes.get(3));
+        this.partidas[0][2] = new Partida(this.clubes.get(1), this.clubes.get(4));
+        this.partidas[0][3] = new Partida(this.clubes.get(0), this.clubes.get(6));
 
         //segunda rodada
-        this.partidas[1][0] = new Partida(this.clubeComandado, this.clubes.get(1));
-        this.partidas[1][1] = new Partida(this.clubes.get(2), this.clubes.get(2));
-        this.partidas[1][2] = new Partida(this.clubes.get(2), this.clubes.get(2));
-        this.partidas[1][3] = new Partida(this.clubes.get(2), this.clubes.get(2));
+        this.partidas[1][0] = new Partida(this.clubeComandado,this.clubes.get(4));
+        this.partidas[1][1] = new Partida(this.clubes.get(5), this.clubes.get(6));
+        this.partidas[1][2] = new Partida(this.clubes.get(2), this.clubes.get(0));
+        this.partidas[1][3] = new Partida(this.clubes.get(3), this.clubes.get(1));
 
         //terceira rodada
-        this.partidas[2][0] = new Partida(this.clubeComandado, this.clubes.get(2));
-        this.partidas[2][1] = new Partida(this.clubes.get(2), this.clubes.get(2));
-        this.partidas[2][2] = new Partida(this.clubes.get(2), this.clubes.get(2));
-        this.partidas[2][3] = new Partida(this.clubes.get(2), this.clubes.get(2));
+        this.partidas[2][0] = new Partida(this.clubeComandado, this.clubes.get(3));
+        this.partidas[2][1] = new Partida(this.clubes.get(0), this.clubes.get(5));
+        this.partidas[2][2] = new Partida(this.clubes.get(1), this.clubes.get(2));
+        this.partidas[2][3] = new Partida(this.clubes.get(6), this.clubes.get(4));
 
         //quarta rodada
-        this.partidas[3][0] = new Partida(this.clubeComandado, this.clubes.get(3));
-        this.partidas[3][1] = new Partida(this.clubes.get(2), this.clubes.get(2));
-        this.partidas[3][2] = new Partida(this.clubes.get(2), this.clubes.get(2));
-        this.partidas[3][3] = new Partida(this.clubes.get(2), this.clubes.get(2));
+        this.partidas[3][0] = new Partida(this.clubeComandado, this.clubes.get(2));
+        this.partidas[3][1] = new Partida(this.clubes.get(1), this.clubes.get(0));
+        this.partidas[3][2] = new Partida(this.clubes.get(3), this.clubes.get(6));
+        this.partidas[3][3] = new Partida(this.clubes.get(4), this.clubes.get(5));
 
         //quinta rodada
-        this.partidas[4][0] = new Partida(this.clubeComandado, this.clubes.get(4));
-        this.partidas[4][1] = new Partida(this.clubes.get(2), this.clubes.get(2));
-        this.partidas[4][2] = new Partida(this.clubes.get(2), this.clubes.get(2));
-        this.partidas[4][3] = new Partida(this.clubes.get(2), this.clubes.get(2));
+        this.partidas[4][0] = new Partida(this.clubeComandado, this.clubes.get(1));
+        this.partidas[4][1] = new Partida(this.clubes.get(6), this.clubes.get(2));
+        this.partidas[4][2] = new Partida(this.clubes.get(0), this.clubes.get(4));
+        this.partidas[4][3] = new Partida(this.clubes.get(5), this.clubes.get(3));
 
         //sexta rodada
-        this.partidas[5][0] = new Partida(this.clubeComandado, this.clubes.get(5));
-        this.partidas[5][1] = new Partida(this.clubes.get(2), this.clubes.get(2));
-        this.partidas[5][2] = new Partida(this.clubes.get(2), this.clubes.get(2));
-        this.partidas[5][3] = new Partida(this.clubes.get(2), this.clubes.get(2));
+        this.partidas[5][0] = new Partida(this.clubeComandado, this.clubes.get(0));
+        this.partidas[5][1] = new Partida(this.clubes.get(1), this.clubes.get(6));
+        this.partidas[5][2] = new Partida(this.clubes.get(2), this.clubes.get(5));
+        this.partidas[5][3] = new Partida(this.clubes.get(3), this.clubes.get(4));
 
         //setima rodada
         this.partidas[6][0] = new Partida(this.clubeComandado, this.clubes.get(6));
-        this.partidas[6][1] = new Partida(this.clubes.get(2), this.clubes.get(2));
-        this.partidas[6][2] = new Partida(this.clubes.get(2), this.clubes.get(2));
-        this.partidas[6][3] = new Partida(this.clubes.get(2), this.clubes.get(2));
+        this.partidas[6][1] = new Partida(this.clubes.get(1), this.clubes.get(5));
+        this.partidas[6][2] = new Partida(this.clubes.get(4), this.clubes.get(2));
+        this.partidas[6][3] = new Partida(this.clubes.get(0), this.clubes.get(3));
         
         imprimirJogos();
     }
