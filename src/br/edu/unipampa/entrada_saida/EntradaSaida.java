@@ -279,7 +279,7 @@ public class EntradaSaida {
         ArrayList<Jogador> titular = new ArrayList<>();
         for (int i = 0; i < 11; i++) {
             System.out.println("\nDigite o Código do " + (i + 1) + " jogador:");
-            this.escolhaInt = receberNumeroJogadorEscalacao();
+            this.escolhaInt = receberNumeroJogadorEscalacao(this.campeonato.getClubeComandado().getJogadores().size());
             if (this.escolhaInt != 0) {
                 if (!titular.contains(this.campeonato.getClubeComandado().getJogadores().get(this.escolhaInt - 1))) {
                     titular.add(this.campeonato.getClubeComandado().getJogadores().get(this.escolhaInt - 1));
@@ -299,7 +299,7 @@ public class EntradaSaida {
         ArrayList<Jogador> reservas = new ArrayList<>();
         for (int i = 0; i < 4; i++) {
             System.out.println("\nDigite o Código do " + (i + 1) + " jogador:");
-            this.escolhaInt = receberNumeroJogadorEscalacao();
+            this.escolhaInt = receberNumeroJogadorEscalacao(this.campeonato.getClubeComandado().getJogadores().size());
             if (this.escolhaInt != 0) {
                 if (titular.contains(this.campeonato.getClubeComandado().getJogadores().get(this.escolhaInt - 1))) {
                     System.out.println("Jogador já escalado no time titular. Escolhe outro jogador:");
@@ -323,7 +323,7 @@ public class EntradaSaida {
         return true;
     }
 
-    public int receberNumeroJogadorEscalacao() {
+    public int receberNumeroJogadorEscalacao(int numTotalJogadores) {
         boolean caracterInvalido = false;
         try {
             this.escolhaInt = Integer.parseInt(teclado.next());
@@ -333,11 +333,11 @@ public class EntradaSaida {
 
         if (caracterInvalido) {
             System.out.println("\nCaracter Inválido!!! Digite Novamente: ");
-            return receberNumeroJogadorEscalacao();
+            return receberNumeroJogadorEscalacao(numTotalJogadores);
         } else {
-            if (this.escolhaInt < 0 && this.escolhaInt > this.campeonato.getClubeComandado().getJogadores().size()) {
+            if (this.escolhaInt < 0 || this.escolhaInt > numTotalJogadores) {
                 System.out.println("Jogador não encontrado. Digite novamente:");
-                return receberNumeroJogadorEscalacao();
+                return receberNumeroJogadorEscalacao(numTotalJogadores);
             } else {
                 return this.escolhaInt;
             }
@@ -375,14 +375,14 @@ public class EntradaSaida {
                 + "\n");
         System.out.println("Você pode realizar 3 substituições. Deseja fazer agora?");
         perguntaSimOuNao();
-        if (this.escolhaString.equals("S")) {
-            
+        if (this.escolhaString.equalsIgnoreCase("S")) {
+            mostrarJogadoresParaSubstituicao();
         }
         return true;
     }
-    
-    private String perguntaSimOuNao(){
-        System.out.println(" Digite\n  --> 'S' - SIM\n --> 'N' - NÃO");
+
+    private String perguntaSimOuNao() {
+        System.out.println(" Digite\n  --> 'S' - SIM\n  --> 'N' - NÃO");
         this.escolhaString = teclado.next();
         if (this.escolhaString.equalsIgnoreCase("S") || (this.escolhaString.equalsIgnoreCase("N"))) {
             return this.escolhaString;
@@ -390,6 +390,63 @@ public class EntradaSaida {
             System.out.println("Caracter Inválido!!! Digite Novamente: ");
             return perguntaSimOuNao();
         }
+    }
+
+    private boolean mostrarJogadoresParaSubstituicao() {
+        Clube clube;
+        if (this.campeonato.getPartidas()[this.campeonato.getRodadaAtual() - 1][0].getClubeMandante()
+                == this.campeonato.getClubeComandado()) {
+            clube = this.campeonato.getPartidas()[this.campeonato.getRodadaAtual() - 1][0].getClubeMandante();
+        } else {
+            clube = this.campeonato.getPartidas()[this.campeonato.getRodadaAtual() - 1][0].getClubeVisitante();
+        }
+
+        if (clube.getEscalacaoReserva().isEmpty()) {
+            System.out.println("\nVocê não tem como realizar substituição. Nenhum jogador colocado no banco.\n");
+        } else {
+            System.out.println("\nVocê poderá fazer até 3 substituições. Digite ZERO caso não deseja fazer a substituição e voltar para o jogo.");
+            int totalReservas = clube.getEscalacaoReserva().size();
+            for (int i = 0; i < totalReservas; i++) {
+                if (this.campeonato.getPartidas()[this.campeonato.getRodadaAtual() - 1][0].getNumeroSubstituicao() < 3) {
+                    verJogadoresEmCampoENoBanco(clube);
+                    System.out.println("\n--> Substituição: " + (i + 1));
+                    System.out.println("\nDigite o Código do jogador que sai:");
+                    int jogadorQueSai = receberNumeroJogadorEscalacao(clube.getEscalacaoTitular().size());
+                    if (jogadorQueSai == 0) {
+                        break;
+                    }
+                    System.out.println("\nDigite o Código do jogador que entra:");
+                    int jogadorQueEntra = receberNumeroJogadorEscalacao(clube.getEscalacaoReserva().size());
+                    if (jogadorQueEntra == 0) {
+                        break;
+                    }
+                    System.out.println("\n *** Substituição feita: Sai " + clube.getEscalacaoTitular().get(jogadorQueSai - 1).getNome()
+                            + " para a entrar o jogador " + clube.getEscalacaoReserva().get(jogadorQueEntra - 1).getNome() + " ***");
+                    this.campeonato.getPartidas()[this.campeonato.getRodadaAtual() - 1][0].substituicao(
+                            clube.getEscalacaoReserva().get(jogadorQueEntra - 1), clube.getEscalacaoTitular().get(jogadorQueSai - 1));
+                }
+            }
+        }
+        return true;
+    }
+
+    public void verJogadoresEmCampoENoBanco(Clube clube) {
+        System.out.println("\n--> Jogadores em campo:");
+        for (int i = 0; i < clube.getEscalacaoTitular().size(); i++) {
+            System.out.println("  '" + (i + 1) + "' " + clube.getEscalacaoTitular().get(i).getNome()
+                    + " - Posição: " + clube.getEscalacaoTitular().get(i).getPosicao()
+                    + " - Característica: " + clube.getEscalacaoTitular().get(i).getCaracteristica());
+        }
+
+        System.out.println("\n--> Jogadores disponíveis para entrar no jogo:");
+        for (int i = 0; i < clube.getEscalacaoReserva().size(); i++) {
+            System.out.println("  '" + (i + 1) + "' " + clube.getEscalacaoReserva().get(i).getNome()
+                    + " - Posição: " + clube.getEscalacaoReserva().get(i).getPosicao()
+                    + " - Característica: " + clube.getEscalacaoReserva().get(i).getCaracteristica());
+        }
+    }
+
+    public void informarTrocaJogadores(Clube clube) {
     }
 
     private void simularPartidasRestantes() {

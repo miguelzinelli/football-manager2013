@@ -34,7 +34,7 @@ public class Partida {
     }
 
     public boolean substituicao(Jogador jogadorEntra, Jogador jogadorSai) {
-        if (this.numeroSubstituicao < 3) {
+        if (this.getNumeroSubstituicao() < 3) {
             if (this.campeonato.getClubeComandado() == this.clubeMandante) {
                 substituir(clubeMandante, jogadorEntra, jogadorSai);
             } else {
@@ -70,5 +70,12 @@ public class Partida {
      */
     public Clube getClubeVisitante() {
         return clubeVisitante;
+    }
+
+    /**
+     * @return the numeroSubstituicao
+     */
+    public int getNumeroSubstituicao() {
+        return numeroSubstituicao;
     }
 }
