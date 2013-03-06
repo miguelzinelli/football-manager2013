@@ -446,9 +446,6 @@ public class EntradaSaida {
         }
     }
 
-    public void informarTrocaJogadores(Clube clube) {
-    }
-
     private void simularPartidasRestantes() {
         for (int i = 1; i < 4; i++) {
             this.campeonato.getPartidas()[this.campeonato.getRodadaAtual() - 1][i].jogarPrimeiroTempo();
