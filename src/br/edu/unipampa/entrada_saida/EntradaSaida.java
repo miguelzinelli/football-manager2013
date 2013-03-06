@@ -127,8 +127,8 @@ public class EntradaSaida {
                     if (!this.campeonato.getClubeComandado().isTimeEscalado()) {
                         System.out.println("\nTime não escalado para essa partida.\n");
                         mostrarMenuPrincipal();
-                    } else{
-                        //
+                    } else {
+                        iniciarPartida();
                     }
                 } else {
                     if (escolha.equals("4")) {
@@ -318,6 +318,8 @@ public class EntradaSaida {
                 break;
             }
         }
+        System.out.println("");
+        mostrarMenuPrincipal();
         return true;
     }
 
@@ -342,14 +344,59 @@ public class EntradaSaida {
         }
     }
 
-    private void definirFormacao(ArrayList escolhidos, Jogador jogadorEscolhido) {
-//        for (int i = 0; i < this.jogo.getClubeComandado().getAtaque().size(); i++) {
-//
-//            if (this.jogo.getClubeComandado().getAtaque().contains(jogadorEscolhido)) {
-//                escolhidos.add(jogadorEscolhido);
-//
-//            }
-//        }
+    private void iniciarPartida() {
+        System.out.println("\nInício do jogo entre : " + this.campeonato.proximoConfronto());
+        if (this.campeonato.getPartidas()[this.campeonato.getRodadaAtual() - 1][0].jogarPrimeiroTempo()) {
+            if (substituirJogador()) {
+                if (this.campeonato.getPartidas()[this.campeonato.getRodadaAtual() - 1][0].jogarSegundoTempo()) {
+                    System.out.println("\nO resultado da partida foi: "
+                            + this.campeonato.getPartidas()[this.campeonato.getRodadaAtual() - 1][0].mostrarResultado()
+                            + "\n");
+                    simularPartidasRestantes();
+                    this.campeonato.setRodadaAtual(this.campeonato.getRodadaAtual() + 1);
+                    this.campeonato.getClubeComandado().setTimeEscalado(false);
+                    this.campeonato.getClubeComandado().getEscalacaoTitular().clear();
+                    this.campeonato.getClubeComandado().getEscalacaoReserva().clear();
+
+                    if (this.campeonato.getRodadaAtual() > this.lerConfig.getClubes().size()) {
+                        System.out.println("mostrar quem venceu campeonato");
+                    } else {
+                        proximoConfronto();
+                        mostrarMenuPrincipal();
+                    }
+                }
+            }
+        }
+    }
+
+    private boolean substituirJogador() {
+        System.out.println("\n *** Intervalo do Jogo ***\n  Resultado Parcial: "
+                + this.campeonato.getPartidas()[this.campeonato.getRodadaAtual() - 1][0].mostrarResultado()
+                + "\n");
+        System.out.println("Você pode realizar 3 substituições. Deseja fazer agora?");
+        perguntaSimOuNao();
+        if (this.escolhaString.equals("S")) {
+            
+        }
+        return true;
+    }
+    
+    private String perguntaSimOuNao(){
+        System.out.println(" Digite\n  --> 'S' - SIM\n --> 'N' - NÃO");
+        this.escolhaString = teclado.next();
+        if (this.escolhaString.equalsIgnoreCase("S") || (this.escolhaString.equalsIgnoreCase("N"))) {
+            return this.escolhaString;
+        } else {
+            System.out.println("Caracter Inválido!!! Digite Novamente: ");
+            return perguntaSimOuNao();
+        }
+    }
+
+    private void simularPartidasRestantes() {
+        for (int i = 1; i < 4; i++) {
+            this.campeonato.getPartidas()[this.campeonato.getRodadaAtual() - 1][i].jogarPrimeiroTempo();
+            this.campeonato.getPartidas()[this.campeonato.getRodadaAtual() - 1][i].jogarSegundoTempo();
+        }
     }
 
     /**
