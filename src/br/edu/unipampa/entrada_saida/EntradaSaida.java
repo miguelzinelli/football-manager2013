@@ -121,7 +121,7 @@ public class EntradaSaida {
             escalarTime();
         } else {
             if (escolha.equals("2")) {
-                //
+                mostrarClassificao();
             } else {
                 if (escolha.equals("3")) {
                     if (!this.campeonato.getClubeComandado().isTimeEscalado()) {
@@ -359,8 +359,10 @@ public class EntradaSaida {
                     this.campeonato.getClubeComandado().getEscalacaoReserva().clear();
 
                     if (this.campeonato.getRodadaAtual() > this.lerConfig.getClubes().size()) {
-                        System.out.println("mostrar quem venceu campeonato");
+                        System.out.println("Parabéns ao " + this.campeonato.getTabela().get(0).getClube().getNome()
+                                + " campeão do torneio FootballPampa, com um total de " + this.campeonato.getTabela().get(0).getPontos() + " pontos");
                     } else {
+                        mostrarClassificao();
                         proximoConfronto();
                         mostrarMenuPrincipal();
                     }
@@ -450,6 +452,14 @@ public class EntradaSaida {
         for (int i = 1; i < 4; i++) {
             this.campeonato.getPartidas()[this.campeonato.getRodadaAtual() - 1][i].jogarPrimeiroTempo();
             this.campeonato.getPartidas()[this.campeonato.getRodadaAtual() - 1][i].jogarSegundoTempo();
+        }
+    }
+    
+    private void mostrarClassificao(){
+        System.out.println("\n *** Classificação Atual do Campeonato ***");
+        for (int i = 0; i < this.campeonato.getTabela().size(); i++) {
+            System.out.println("   " + (i+1) + "º - " + this.campeonato.getTabela().get(i).getClube().getNome()
+                    + " - Pontos: " + this.campeonato.getTabela().get(i).getPontos());
         }
     }
 

@@ -2,6 +2,8 @@ package br.edu.unipampa.campeonato;
 
 import br.edu.unipampa.clube.Clube;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 
 /**
  *
@@ -13,6 +15,7 @@ public class Campeonato {
     private ArrayList<Clube> clubes;
     private Partida[][] partidas;
     private int rodadaAtual;
+    private ArrayList<Tabela> tabela;
 
     public Campeonato() {
         this.rodadaAtual = 1;
@@ -90,6 +93,14 @@ public class Campeonato {
         this.partidas[6][1] = new Partida(this.clubes.get(1), this.clubes.get(5), this);
         this.partidas[6][2] = new Partida(this.clubes.get(4), this.clubes.get(2), this);
         this.partidas[6][3] = new Partida(this.clubes.get(0), this.clubes.get(3), this);
+        
+        //monta tabela
+        this.tabela = new ArrayList<>();
+                
+        this.getTabela().add(new Tabela(clubeComandado));
+        for (int i = 0; i < this.clubes.size(); i++) {
+            this.getTabela().add(new Tabela(this.clubes.get(i)));
+        }
     }
 
     public String proximoConfronto() {
@@ -117,5 +128,26 @@ public class Campeonato {
      */
     public Partida[][] getPartidas() {
         return partidas;
+    }
+
+    /**
+     * @return the tabela
+     */
+    public ArrayList<Tabela> getTabela() {
+        return ordenarClassificacao(tabela);
+    }
+    
+    private ArrayList<Tabela> ordenarClassificacao(ArrayList<Tabela> tabela) {
+        Collections.sort(tabela, new Comparator() {
+            @Override
+            public int compare(Object o1, Object o2) {
+                Tabela p1 = (Tabela) o1;
+                Tabela p2 = (Tabela) o2;
+                return p1.getPontos() < p2.getPontos() ? -1 : (p1.getPontos() > p2.getPontos() ? +1 : 0);
+            }
+        });
+        Collections.reverse(tabela);
+
+        return tabela;
     }
 }

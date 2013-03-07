@@ -26,11 +26,34 @@ public class Partida {
     }
 
     public boolean jogarPrimeiroTempo() {
+        //implementar regra do jogo
+
         return true;
     }
 
     public boolean jogarSegundoTempo() {
+        //implementar regra do jogo
+
+        if (this.golsMandante == this.golsVisitante) {
+            addPontosNaTabela(clubeMandante, 1);
+            addPontosNaTabela(clubeVisitante, 1);
+        } else {
+            if (this.golsMandante > this.golsVisitante) {
+                addPontosNaTabela(clubeMandante, 3);
+            } else {
+                addPontosNaTabela(clubeVisitante, 3);
+            }
+        }
         return true;
+    }
+
+    private void addPontosNaTabela(Clube clube, int pontosGanho) {
+        for (int i = 0; i < this.campeonato.getTabela().size(); i++) {
+            if (this.campeonato.getTabela().get(i).getClube() == clube) {
+                this.campeonato.getTabela().get(i).setPontos(this.campeonato.getTabela().get(i).getPontos()
+                        + pontosGanho);
+            }
+        }
     }
 
     public boolean substituicao(Jogador jogadorEntra, Jogador jogadorSai) {
