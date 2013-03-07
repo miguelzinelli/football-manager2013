@@ -136,4 +136,24 @@ public class Campeonato {
     public ArrayList<Tabela> getTabela() {
         return this.tabela;
     }
+    
+    /**
+     * Método para ordenar a lista de processos por tempo de chegada (TC)
+     *
+     * @return ArrayList<Processo> - Lista de processo ordenada
+     */
+    public ArrayList<Tabela> ordenarClassificacao(ArrayList<Tabela> tabela) {
+        //ordenar lista de processo
+        Collections.sort(tabela, new Comparator() {
+            @Override
+            public int compare(Object o1, Object o2) {
+                Tabela p1 = (Tabela) o1;
+                Tabela p2 = (Tabela) o2;
+                return p1.getPontos() < p2.getPontos() ? -1 : (p1.getPontos() > p2.getPontos() ? +1 : 0);
+            }
+        });
+        Collections.reverse(tabela);
+        //retorna lista ordenada
+        return tabela;
+    }    
 }
