@@ -374,6 +374,30 @@ public class SalvarConfig {
         Jogador j18 = new Jogador("Tcheguevara", 79, 12.3, "Brasileiro", 26, PosicaoJogador.LATERAL, CaracteristicaJogador.DEFESA, esportivo);
         jogadoresEsportivo.add(j18);
         esportivo.setJogadores(jogadoresEsportivo);
+        
+        ArrayList<Jogador> titular = new ArrayList<>();
+        titular.add(j8);
+        titular.add(j9);
+        titular.add(j11);
+        titular.add(j17);
+        titular.add(j14);
+        titular.add(j16);
+        titular.add(j12);
+        titular.add(j5);
+        titular.add(j3);
+        titular.add(j1);
+        titular.add(j2);
+        esportivo.setEscalacaoTitular(titular);
+
+        ArrayList<Jogador> reserva = new ArrayList<>();
+        reserva.add(j4);
+        reserva.add(j6);
+        reserva.add(j7);
+        reserva.add(j10);
+        reserva.add(j13);
+        reserva.add(j15);
+        reserva.add(j18);
+        esportivo.setEscalacaoReserva(reserva);
     }
 
     private void criarJuventude(Clube juventude) {

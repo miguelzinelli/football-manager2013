@@ -113,7 +113,7 @@ public class Campeonato {
      * @return the rodadaAtual
      */
     public int getRodadaAtual() {
-        return rodadaAtual;
+        return this.rodadaAtual;
     }
 
     /**
@@ -127,27 +127,13 @@ public class Campeonato {
      * @return the partidas
      */
     public Partida[][] getPartidas() {
-        return partidas;
+        return this.partidas;
     }
 
     /**
      * @return the tabela
      */
     public ArrayList<Tabela> getTabela() {
-        return ordenarClassificacao(tabela);
-    }
-    
-    private ArrayList<Tabela> ordenarClassificacao(ArrayList<Tabela> tabela) {
-        Collections.sort(tabela, new Comparator() {
-            @Override
-            public int compare(Object o1, Object o2) {
-                Tabela p1 = (Tabela) o1;
-                Tabela p2 = (Tabela) o2;
-                return p1.getPontos() < p2.getPontos() ? -1 : (p1.getPontos() > p2.getPontos() ? +1 : 0);
-            }
-        });
-        Collections.reverse(tabela);
-
-        return tabela;
+        return this.tabela;
     }
 }

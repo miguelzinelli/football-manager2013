@@ -122,6 +122,7 @@ public class EntradaSaida {
         } else {
             if (escolha.equals("2")) {
                 mostrarClassificao();
+                mostrarMenuPrincipal();
             } else {
                 if (escolha.equals("3")) {
                     if (!this.campeonato.getClubeComandado().isTimeEscalado()) {
@@ -353,6 +354,7 @@ public class EntradaSaida {
                             + this.campeonato.getPartidas()[this.campeonato.getRodadaAtual() - 1][0].mostrarResultado()
                             + "\n");
                     simularPartidasRestantes();
+                    mostrarResultadosDaRodada();
                     this.campeonato.setRodadaAtual(this.campeonato.getRodadaAtual() + 1);
                     this.campeonato.getClubeComandado().setTimeEscalado(false);
                     this.campeonato.getClubeComandado().getEscalacaoTitular().clear();
@@ -368,6 +370,13 @@ public class EntradaSaida {
                     }
                 }
             }
+        }
+    }
+
+    public void mostrarResultadosDaRodada() {
+        System.out.println("\nResultados da " + this.campeonato.getRodadaAtual() + "ª rodada:");
+        for (int i = 0; i < 4; i++) {
+            System.out.println("  " + this.campeonato.getPartidas()[this.campeonato.getRodadaAtual() - 1][i].mostrarResultado());
         }
     }
 
@@ -454,11 +463,11 @@ public class EntradaSaida {
             this.campeonato.getPartidas()[this.campeonato.getRodadaAtual() - 1][i].jogarSegundoTempo();
         }
     }
-    
-    private void mostrarClassificao(){
+
+    private void mostrarClassificao() {
         System.out.println("\n *** Classificação Atual do Campeonato ***");
         for (int i = 0; i < this.campeonato.getTabela().size(); i++) {
-            System.out.println("   " + (i+1) + "º - " + this.campeonato.getTabela().get(i).getClube().getNome()
+            System.out.println("   " + (i + 1) + "º - " + this.campeonato.getTabela().get(i).getClube().getNome()
                     + " - Pontos: " + this.campeonato.getTabela().get(i).getPontos());
         }
     }
