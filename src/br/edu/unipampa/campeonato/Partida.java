@@ -7,7 +7,8 @@ import java.util.Random;
 
 /**
  *
- * @author Alex
+ * @author Alex Malmann Becker
+ * @author Miguel Zinelli
  */
 public class Partida {
 
@@ -18,6 +19,19 @@ public class Partida {
     private int golsVisitante;
     private Campeonato campeonato;
 
+    /**
+     * Método Construtor Default
+     */
+    public Partida() {
+    }
+
+    /**
+     * Método Construtor com parâmetros
+     *
+     * @param clubeMandante - Clube
+     * @param clubeVisitante - Clube
+     * @param campeonato - Campeonato
+     */
     public Partida(Clube clubeMandante, Clube clubeVisitante, Campeonato campeonato) {
         this.numeroSubstituicao = 0;
         this.golsMandante = 0;
@@ -27,11 +41,21 @@ public class Partida {
         this.campeonato = campeonato;
     }
 
+    /**
+     * Método para jogar primeiro tempo
+     *
+     * @return boolean - retorna o fim do primeiro tempo
+     */
     public boolean jogarPrimeiroTempo() {
         jogar();
         return true;
     }
 
+    /**
+     * Método para jogar o segundo tempo
+     *
+     * @return boolean - retorna o fim do jogo
+     */
     public boolean jogarSegundoTempo() {
         jogar();
         if (this.golsMandante == this.golsVisitante) {
@@ -47,6 +71,9 @@ public class Partida {
         return true;
     }
 
+    /**
+     * Método para comparar os clubes
+     */
     private void jogar() {
         for (int i = 0; i < 4; i++) {
             verificaForcaClubes(CaracteristicaJogador.ATAQUE, CaracteristicaJogador.DEFESA);
@@ -54,6 +81,11 @@ public class Partida {
         }
     }
 
+    /**
+     * Método para fazer gol
+     *
+     * @param clube - Clube
+     */
     private void fazerGol(Clube clube) {
         if (clube == this.clubeMandante) {
             this.golsMandante++;
@@ -62,6 +94,12 @@ public class Partida {
         }
     }
 
+    /**
+     * Método para verificar forcas dos clubes pelas caracteristica
+     *
+     * @param caracteristicaMandante - CaracteristicaJogador mandante
+     * @param caracteristicaVisitante - CaracteristicaJogador visitante
+     */
     private void verificaForcaClubes(CaracteristicaJogador caracteristicaMandante,
             CaracteristicaJogador caracteristicaVisitante) {
         int forcaMandante = somaForcaJogadores(this.clubeMandante, caracteristicaMandante);
@@ -74,6 +112,13 @@ public class Partida {
         }
     }
 
+    /**
+     * Método para somar forças dos jogadores por caracterisca
+     *
+     * @param clube - Clube
+     * @param caracteristica - CaracteristicaJogador
+     * @return int - retorna a força total
+     */
     private int somaForcaJogadores(Clube clube, CaracteristicaJogador caracteristica) {
         Random k = new Random();
         int totalForca = 0;
@@ -85,6 +130,12 @@ public class Partida {
         return (totalForca * k.nextInt(10));
     }
 
+    /**
+     * Método para adicionar pontos na tabela
+     *
+     * @param clube - CLube
+     * @param pontosGanho - int
+     */
     private void addPontosNaTabela(Clube clube, int pontosGanho) {
         for (int i = 0; i < this.campeonato.getTabela().size(); i++) {
             if (this.campeonato.getTabela().get(i).getClube() == clube) {
@@ -94,6 +145,13 @@ public class Partida {
         }
     }
 
+    /**
+     * Método para substituir jogador
+     *
+     * @param jogadorEntra - Jogador
+     * @param jogadorSai - Jogador
+     * @return boolean - retorna se substituiu
+     */
     public boolean substituicao(Jogador jogadorEntra, Jogador jogadorSai) {
         if (this.getNumeroSubstituicao() < 3) {
             if (this.campeonato.getClubeComandado() == this.clubeMandante) {
@@ -107,6 +165,13 @@ public class Partida {
         }
     }
 
+    /**
+     * Método para realizar substituição
+     *
+     * @param clube - Clube
+     * @param jogadorEntra - Jogador
+     * @param jogadorSai - Jogador
+     */
     private void substituir(Clube clube, Jogador jogadorEntra, Jogador jogadorSai) {
         clube.getEscalacaoTitular().remove(jogadorSai);
         clube.getEscalacaoReserva().remove(jogadorEntra);
@@ -114,29 +179,40 @@ public class Partida {
         this.numeroSubstituicao++;
     }
 
+    /**
+     * Método para mostrar resultado
+     *
+     * @return String
+     */
     public String mostrarResultado() {
         return this.clubeMandante.getNome() + " " + this.golsMandante + " x "
                 + this.golsVisitante + " " + this.clubeVisitante.getNome();
     }
 
     /**
-     * @return the clubeMandante
+     * Método que retorna o clube mandante
+     *
+     * @return clubeMandante - Clube
      */
     public Clube getClubeMandante() {
-        return clubeMandante;
+        return this.clubeMandante;
     }
 
     /**
-     * @return the clubeVisitante
+     * Método que retorna o clube visitante
+     *
+     * @return clubeVisitante - Clube
      */
     public Clube getClubeVisitante() {
-        return clubeVisitante;
+        return this.clubeVisitante;
     }
 
     /**
-     * @return the numeroSubstituicao
+     * Método que retorna o número de substituição feita
+     *
+     * @return numeroSubstituicao - int
      */
     public int getNumeroSubstituicao() {
-        return numeroSubstituicao;
+        return this.numeroSubstituicao;
     }
 }

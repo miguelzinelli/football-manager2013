@@ -11,7 +11,8 @@ import java.util.Scanner;
 
 /**
  *
- * @author Alex
+ * @author Alex Malmann Becker
+ * @author Miguel Zinelli
  */
 public class EntradaSaida {
 
@@ -22,6 +23,9 @@ public class EntradaSaida {
     private Campeonato campeonato;
     private Transferencia transferencia;
 
+    /**
+     * Método Construtor Default
+     */
     public EntradaSaida() {
         this.teclado = new Scanner(System.in);
         this.lerConfig = new LerConfig();
@@ -29,6 +33,9 @@ public class EntradaSaida {
         this.transferencia = new Transferencia();
     }
 
+    /**
+     * Método para iniciar o jogo
+     */
     public void iniciarJogo() {
         System.out.println("***** Bem Vindo ao FootballPampa! *****\n");
         String nomeTreinador = informarNomeTreinador();
@@ -41,6 +48,11 @@ public class EntradaSaida {
         iniciarCampeonato(timeComandado, this.lerConfig.getClubes());
     }
 
+    /**
+     * Método para informar o nome do treinador
+     *
+     * @return String
+     */
     private String informarNomeTreinador() {
         System.out.println("Digite seu nome:");
 
@@ -53,6 +65,11 @@ public class EntradaSaida {
         }
     }
 
+    /**
+     * Método para escolher o time a comandar
+     *
+     * @return Clube
+     */
     private Clube escolherTime() {
         System.out.println("\nEscolha o Time que deseja comandar:");
         for (int i = 0; i < this.lerConfig.getClubes().size(); i++) {
@@ -78,6 +95,12 @@ public class EntradaSaida {
         }
     }
 
+    /**
+     * Método para iniciar o campeonato
+     *
+     * @param clubeComandado - Clube
+     * @param clubes - ArrayList<Clube>
+     */
     private void iniciarCampeonato(Clube clubeComandado, ArrayList<Clube> clubes) {
         this.campeonato.setClubeComandado(clubeComandado);
         this.campeonato.setClubes(clubes);
@@ -93,10 +116,18 @@ public class EntradaSaida {
         mostrarMenuPrincipal();
     }
 
+    /**
+     * Método para mostrar o próximo confronto do clube comandado
+     */
     private void proximoConfronto() {
         System.out.println("\nPróximo Confronto: " + this.campeonato.proximoConfronto());
     }
 
+    /**
+     * Método para mostrar o menu principal
+     *
+     * @return boolean
+     */
     private boolean mostrarMenuPrincipal() {
         System.out.println(
                 "-------------------------------------------------------------------------------------------------"
@@ -116,6 +147,11 @@ public class EntradaSaida {
         }
     }
 
+    /**
+     * Método para executar a ação escolhida no menu principal
+     *
+     * @param escolha - String
+     */
     private void executarAcaoEscolhidaMenuPrincipal(String escolha) {
         if (escolha.equals("1")) {
             escalarTime();
@@ -167,6 +203,11 @@ public class EntradaSaida {
         }
     }
 
+    /**
+     * Método para mostrar o menu compra e venda de jogadores
+     *
+     * @return String
+     */
     private String mostrarMenuCompraVendeJogador() {
         System.out.println("\nO que você deseja fazer:\n --> '1' - Comprar\n --> '2' - Vender");
         escolhaString = teclado.next();
@@ -178,6 +219,11 @@ public class EntradaSaida {
         }
     }
 
+    /**
+     * Método para comprar jogador
+     *
+     * @return boolean
+     */
     private boolean comprarJogador() {
         System.out.println("Digite o número do jogador que deseja comprar. Digite ZERO para cancelar compra:");
         boolean caracterInvalido = false;
@@ -214,6 +260,11 @@ public class EntradaSaida {
         }
     }
 
+    /**
+     * Método para vender jogador
+     *
+     * @return boolean
+     */
     private boolean venderJogador() {
         System.out.println("Digite o número do jogador que deseja vender. Digite ZERO para cancelar venda:");
         boolean caracterInvalido = false;
@@ -254,12 +305,20 @@ public class EntradaSaida {
         }
     }
 
+    /**
+     * Método para sortear clube interessado na compra do jogador
+     *
+     * @return
+     */
     private Clube sortearClubeInteressadoComprarJogador() {
         Random k = new Random();
         int sortear = k.nextInt(this.campeonato.getClubes().size() - 1);
         return this.campeonato.getClubes().get(sortear);
     }
 
+    /**
+     * Método para mostrar jogadores do clube comandado
+     */
     private void mostrarJogadoresClubeComandado() {
         for (int i = 0; i < this.campeonato.getClubeComandado().getJogadores().size(); i++) {
             System.out.println("  '" + (i + 1) + "' " + this.campeonato.getClubeComandado().getJogadores().get(i).getNome()
@@ -272,6 +331,11 @@ public class EntradaSaida {
         }
     }
 
+    /**
+     * Método para escalar time
+     *
+     * @return boolean
+     */
     private boolean escalarTime() {
         System.out.println("\n******** Definir Escalação ********");
         System.out.println("\nJogadores Disponíveis para partida:");
@@ -324,7 +388,13 @@ public class EntradaSaida {
         return true;
     }
 
-    public int receberNumeroJogadorEscalacao(int numTotalJogadores) {
+    /**
+     * Método para receber numero do jogador da escalação
+     *
+     * @param numTotalJogadores - int
+     * @return int
+     */
+    private int receberNumeroJogadorEscalacao(int numTotalJogadores) {
         boolean caracterInvalido = false;
         try {
             this.escolhaInt = Integer.parseInt(teclado.next());
@@ -345,6 +415,9 @@ public class EntradaSaida {
         }
     }
 
+    /**
+     * Método para iniciar a partida
+     */
     private void iniciarPartida() {
         System.out.println("\nInício do jogo entre : " + this.campeonato.proximoConfronto());
         if (this.campeonato.getPartidas()[this.campeonato.getRodadaAtual() - 1][0].jogarPrimeiroTempo()) {
@@ -372,13 +445,21 @@ public class EntradaSaida {
         }
     }
 
-    public void mostrarResultadosDaRodada() {
+    /**
+     * Método para mostrar resultados da rodada
+     */
+    private void mostrarResultadosDaRodada() {
         System.out.println("\nResultados da " + this.campeonato.getRodadaAtual() + "ª rodada:");
         for (int i = 0; i < 4; i++) {
             System.out.println("  " + this.campeonato.getPartidas()[this.campeonato.getRodadaAtual() - 1][i].mostrarResultado());
         }
     }
 
+    /**
+     * Método para substituir jogador
+     *
+     * @return boolean
+     */
     private boolean substituirJogador() {
         System.out.println("\n *** Intervalo do Jogo ***\n  Resultado Parcial: "
                 + this.campeonato.getPartidas()[this.campeonato.getRodadaAtual() - 1][0].mostrarResultado()
@@ -391,6 +472,11 @@ public class EntradaSaida {
         return true;
     }
 
+    /**
+     * Método para perguntar sim ou não
+     *
+     * @return String
+     */
     private String perguntaSimOuNao() {
         System.out.println(" Digite\n  --> 'S' - SIM\n  --> 'N' - NÃO");
         this.escolhaString = teclado.next();
@@ -402,6 +488,11 @@ public class EntradaSaida {
         }
     }
 
+    /**
+     * Método para mostrar jogadores para substituição
+     *
+     * @return boolean
+     */
     private boolean mostrarJogadoresParaSubstituicao() {
         Clube clube;
         if (this.campeonato.getPartidas()[this.campeonato.getRodadaAtual() - 1][0].getClubeMandante()
@@ -440,7 +531,12 @@ public class EntradaSaida {
         return true;
     }
 
-    public void verJogadoresEmCampoENoBanco(Clube clube) {
+    /**
+     * Método para ver jogadores em campo e no banco
+     *
+     * @param clube - Clube
+     */
+    private void verJogadoresEmCampoENoBanco(Clube clube) {
         System.out.println("\n--> Jogadores em campo:");
         for (int i = 0; i < clube.getEscalacaoTitular().size(); i++) {
             System.out.println("  '" + (i + 1) + "' " + clube.getEscalacaoTitular().get(i).getNome()
@@ -456,6 +552,9 @@ public class EntradaSaida {
         }
     }
 
+    /**
+     * Método para simular partidas restantes da rodada
+     */
     private void simularPartidasRestantes() {
         for (int i = 1; i < 4; i++) {
             this.campeonato.getPartidas()[this.campeonato.getRodadaAtual() - 1][i].jogarPrimeiroTempo();
@@ -463,6 +562,9 @@ public class EntradaSaida {
         }
     }
 
+    /**
+     * Método para mostrar classificação
+     */
     private void mostrarClassificao() {
         System.out.println("\n *** Classificação Atual do Campeonato ***");
         this.campeonato.ordenarClassificacao(this.campeonato.getTabela());
@@ -471,15 +573,20 @@ public class EntradaSaida {
                     + " - Pontos: " + this.campeonato.getTabela().get(i).getPontos());
         }
     }
-    
-    private void mostrarCampeao(){
+
+    /**
+     * Método para mostrar campeão
+     */
+    private void mostrarCampeao() {
         this.campeonato.ordenarClassificacao(this.campeonato.getTabela());
         System.out.println("Parabéns ao " + this.campeonato.getTabela().get(0).getClube().getNome()
-                                + " campeão do torneio FootballPampa, com um total de " + this.campeonato.getTabela().get(0).getPontos() + " pontos");
+                + " campeão do torneio FootballPampa, com um total de " + this.campeonato.getTabela().get(0).getPontos() + " pontos");
     }
 
     /**
-     * @return the leConfig
+     * Método para ler o arquivo de configuração
+     *
+     * @return leConfig - LeConfig
      */
     public LerConfig getLeConfig() {
         return this.lerConfig;

@@ -2,7 +2,8 @@ package br.edu.unipampa.jogador;
 
 /**
  *
- * @author Miguel
+ * @author Alex Malmann Becker
+ * @author Miguel Zinelli
  */
 public enum CaracteristicaJogador {
 

@@ -7,18 +7,27 @@ import java.util.ArrayList;
 
 /**
  *
- * @author Alex
+ * @author Alex Malmann Becker
+ * @author Miguel Zinelli
  */
 public class LerConfig {
 
     private ArrayList<Clube> clubes;
     private ArrayList<Jogador> jogadoresAVenda;
 
+    /**
+     * Método Construtor Default
+     */
     public LerConfig() {
         this.clubes = new ArrayList<>();
         this.jogadoresAVenda = new ArrayList<>();
     }
 
+    /**
+     * Método para ler o arquivo de configuração
+     *
+     * @throws Exception
+     */
     public void ler() throws Exception {
         FileInputStream fis = new FileInputStream("config\\config.ser");
         ObjectInputStream ois = new ObjectInputStream(fis);
@@ -36,14 +45,18 @@ public class LerConfig {
     }
 
     /**
-     * @return the clubes
+     * Método que retorna os clubes
+     *
+     * @return clubes - Clube
      */
     public ArrayList<Clube> getClubes() {
         return this.clubes;
     }
 
     /**
-     * @return the jogadoresAVenda
+     * Método que retorna os jogadores a venda
+     *
+     * @return jogadoresAVenda - Jogador
      */
     public ArrayList<Jogador> getJogadoresAVenda() {
         return this.jogadoresAVenda;

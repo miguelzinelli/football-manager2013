@@ -4,34 +4,52 @@ import br.edu.unipampa.clube.Clube;
 
 /**
  *
- * @author Alex
+ * @author Alex Malmann Becker
+ * @author Miguel Zinelli
  */
 public class Tabela {
 
     private Clube clube;
     private int pontos;
-    
-    public Tabela(Clube clube){
+
+    /**
+     * Método Construtor Default
+     */
+    public Tabela() {
+    }
+
+    /**
+     * Método Construtor com parâmetro
+     *
+     * @param clube - Clube
+     */
+    public Tabela(Clube clube) {
         this.clube = clube;
         this.pontos = 0;
     }
 
     /**
-     * @return the clube
+     * Método que retorna o clube da tabela
+     *
+     * @return clube - Clube
      */
     public Clube getClube() {
-        return clube;
+        return this.clube;
     }
 
     /**
-     * @return the pontos
+     * Método que retorna os pontos do clube
+     *
+     * @return pontos - int
      */
     public int getPontos() {
-        return pontos;
+        return this.pontos;
     }
 
     /**
-     * @param pontos the pontos to set
+     * Método que seta os pontos do clube
+     *
+     * @param pontos - int
      */
     public void setPontos(int pontos) {
         this.pontos = pontos;
