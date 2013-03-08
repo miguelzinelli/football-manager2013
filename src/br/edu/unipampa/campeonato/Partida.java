@@ -127,7 +127,7 @@ public class Partida {
                 totalForca += clube.getEscalacaoTitular().get(i).getForca();
             }
         }
-        return (totalForca * k.nextInt(10));
+        return (totalForca * k.nextInt(8));
     }
 
     /**
