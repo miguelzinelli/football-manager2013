@@ -104,11 +104,14 @@ public class Partida {
             CaracteristicaJogador caracteristicaVisitante) {
         int forcaMandante = somaForcaJogadores(this.clubeMandante, caracteristicaMandante);
         int forcaVisitante = somaForcaJogadores(this.clubeVisitante, caracteristicaVisitante);
-        if (forcaMandante > forcaVisitante) {
-            fazerGol(clubeMandante);
-        }
-        if (forcaMandante < forcaVisitante) {
-            fazerGol(clubeVisitante);
+        if (caracteristicaMandante == CaracteristicaJogador.ATAQUE) {
+            if (forcaMandante > forcaVisitante) {
+                fazerGol(clubeMandante);
+            }
+        } else {
+            if (forcaMandante < forcaVisitante) {
+                fazerGol(clubeVisitante);
+            }
         }
     }
 
