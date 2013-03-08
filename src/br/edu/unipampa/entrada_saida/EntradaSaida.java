@@ -433,10 +433,10 @@ public class EntradaSaida {
                     this.campeonato.getClubeComandado().getEscalacaoTitular().clear();
                     this.campeonato.getClubeComandado().getEscalacaoReserva().clear();
 
+                    mostrarClassificao();
                     if (this.campeonato.getRodadaAtual() > this.lerConfig.getClubes().size()) {
                         mostrarCampeao();
                     } else {
-                        mostrarClassificao();
                         proximoConfronto();
                         mostrarMenuPrincipal();
                     }
@@ -579,8 +579,9 @@ public class EntradaSaida {
      */
     private void mostrarCampeao() {
         this.campeonato.ordenarClassificacao(this.campeonato.getTabela());
-        System.out.println("Parabéns ao " + this.campeonato.getTabela().get(0).getClube().getNome()
+        System.out.println("\n\nParabéns ao " + this.campeonato.getTabela().get(0).getClube().getNome()
                 + " campeão do torneio FootballPampa, com um total de " + this.campeonato.getTabela().get(0).getPontos() + " pontos");
+        System.exit(0);
     }
 
     /**
